@@ -10,7 +10,7 @@ using std::stringstream;
 Global program;
 void print_header(){
     cout << "\n\nEEET2482/COSC2082 ASSIGNMENT\n";
-    cout << "ACATION HOUSE EXCHANGE APPLICATION";
+    cout << "VACATION HOUSE EXCHANGE APPLICATION";
     cout << "\n\n";
     cout << "Instructor: Mr. Linh Tran" <<"\n"
         << "Group: 25" <<"\n"

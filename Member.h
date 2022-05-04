@@ -9,6 +9,7 @@ class Member {
     string fullName;
     string phoneNumber;
     string pwd;
+    double occupier_rating_score;
     // House own_house;
     Member(){};
     void change_password();
