@@ -9,5 +9,6 @@ void Member::change_password(){
 void Member::show_info(){
     cout<< "[ User name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
-        <<"Credit: "<< this->creditPoints<<" ]";
+        <<"Credit: "<< this->creditPoints <<"\nHouse: "
+        << this->own_house.location<<"\ndescription: " << this->own_house.description << "]";
 }

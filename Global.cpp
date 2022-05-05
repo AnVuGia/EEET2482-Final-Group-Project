@@ -4,6 +4,7 @@
 #include <sstream>
 #include "Member.h"
 #include "Global.h"
+#include "House.h"
 using std::cin;
 using std::cout;
 using std::string;
@@ -23,6 +24,8 @@ void Global::inputUserData(Member &user, string line){
     user.fullName = outp[2];
     user.phoneNumber = outp[3];
     user.pwd = outp[4];
+    user.own_house.location = outp[5];
+    user.own_house.description = outp[6];
 }
 void Global::inputData(){
     std::fstream myfile;

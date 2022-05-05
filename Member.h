@@ -1,4 +1,5 @@
 #include <iostream>
+#include "House.h"
 #ifndef MEMBER_H
 #define MEMBER_H
 using std::string;
@@ -9,7 +10,8 @@ class Member {
     string fullName;
     string phoneNumber;
     string pwd;
-    // House own_house;
+    double occupier_rating_score;
+    House own_house;
     Member(){};
     void change_password();
     void show_info();

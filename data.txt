@@ -1,2 +1,2 @@
-500,John,Johnny Dang,01234,120603 ,House    
-600,An,An Vu,012345,12345,House  
+500,John,Johnny Dang,01234,120603,Texas,A nice house
+600,An,An Vu,012345,12345,Arizona,A pretty house

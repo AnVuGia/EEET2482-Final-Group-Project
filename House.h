@@ -1,8 +1,11 @@
 #include <iostream>
+#ifndef HOUSE_H
+#define HOUSE_H
 using std::string;
 class House{
-    int house_rating_score;
-    int occupier_rationg_score;
+    public:
+    double house_rating_score;
     string location;
     string description;
 };
+#endif
