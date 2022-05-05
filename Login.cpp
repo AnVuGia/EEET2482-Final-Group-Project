@@ -19,7 +19,7 @@ void login(Global &program){
     cout << "Enter username: ";
     cin >> username;
     for(size_t i = 0; i < program.users.size(); i++){
-        if(username == program.users[i].userName){
+        if(username == program.users[i].get_userName()){
             is_valid = 1;
             temp = &program.users[i];
         }
@@ -27,7 +27,7 @@ void login(Global &program){
     if(is_valid == 1){
         cout << "Enter your password: ";
         cin >> pwd;
-        if(pwd == temp->pwd){
+        if(pwd == temp->get_pwd()){
             cout << "Log in success full!\n";
             cout <<"This is your menu: \n";
             cout <<"0. Exit \n";

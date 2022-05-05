@@ -19,13 +19,7 @@ void Global::inputUserData(Member &user, string line){
     while(std::getline(ss, token, ',')){
         outp.push_back(token);
     }
-    user.creditPoints = stoi(outp[0]);
-    user.userName = outp[1];
-    user.fullName = outp[2];
-    user.phoneNumber = outp[3];
-    user.pwd = outp[4];
-    user.own_house.location = outp[5];
-    user.own_house.description = outp[6];
+    user.set_info(stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], outp[5], outp[6]);
 }
 void Global::inputData(){
     std::fstream myfile;
