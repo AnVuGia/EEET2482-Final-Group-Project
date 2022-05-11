@@ -46,6 +46,26 @@ int Global::choice(){
 }
 
 void Global::end(){
-
+    std::fstream myfile;
+    myfile.open("output.txt", std::ios::out);
+    if(!myfile){
+        cout << "Cannot open File";
+    }
+    string outp;
+    for(auto user: this->users){
+        myfile<< user.get_creds()<<","
+        <<user.get_userName()<<","
+        <<user.get_fullName()<<","
+        <<user.get_pwd()<<","
+        <<user.get_houserate()<<","
+        <<user.get_minocrate()<<","
+        <<user.get_house_loca()<<","
+        <<user.get_house_des()<<","
+        <<user.get_house_avail()<<","
+        <<user.get_house_startdate()<<","
+        <<user.get_house_enddate()<<"\n";
+    }
+    cout << "\n File saved!";
+    myfile.close();
 }
 

@@ -12,12 +12,6 @@ House::House(string location, string description){
     this->location = location;
     this->description = description;
 }
-string House::get_location(){
-    return this->location;
-}
-string House:: get_description(){
-    return this->description;
-}
 void House::set_available(){
     string inp;
     cout << "\nDo you want to list your house (y/n: ";
@@ -65,7 +59,7 @@ void House::set_available(){
 }    
 
 void House::show_info(){
-    cout << "[ Location: "<< this->location 
+    cout << "\n[ Location: "<< this->location 
         << "\nDescription: "<< this->description;
     if(available){
         cout << " Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
@@ -89,4 +83,32 @@ void House::set_info(double houserate,double min_occ_rate,
         this->end_date.set_date(day, month, year);
         
 }
-
+string House::get_location(){
+    return this->location;
+}
+string House:: get_description(){
+    return this->description;
+}
+double House::get_houserate(){
+    return this->house_rating_score;
+}
+double House::get_minoccrate(){
+    return this->min_occupier_rating;
+}
+bool House::get_availalbe(){
+    return this->available;
+}
+string House::get_startdate(){
+    if(this->start_date.get_day() > 0){
+        return this->start_date.get_date();
+    } else{
+        return "0 0 0";
+    }
+}
+string House::get_enddate(){
+    if(this->end_date.get_day() > 0){
+        return this->end_date.get_date();
+    } else{
+        return "0 0 0";
+    }
+}

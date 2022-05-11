@@ -12,6 +12,7 @@ class Date{
     int rata_die_days();
     void set_date(int day, int month, int year);
     string get_date();
+    int get_day();
 };
 
 

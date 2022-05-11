@@ -21,8 +21,9 @@ int Date::rata_die_days(){
 };
 string Date::get_date(){
     std::stringstream ss;
-    ss << this->day <<"/" <<this->month <<"/"<<this->year;
-    string outp;
-    ss >> outp;
-    return outp;
+    ss << this->day <<" " <<this->month <<" "<<this->year;
+    return ss.str();
+}
+int Date::get_day(){
+    return this->day;
 }

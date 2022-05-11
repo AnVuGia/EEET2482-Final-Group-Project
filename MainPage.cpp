@@ -38,6 +38,7 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
-    cout << "\n" ; program.CurrentUser->show_info();
+    program.CurrentUser->list_house();
+    program.end();
     return 0;
 }
