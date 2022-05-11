@@ -1,8 +1,10 @@
 #include "Date.h"
-
+#include "House.h"
 int main(){
-    Date start (11,2,2022);
-    Date end (21,12,2022);
-
-    std::cout << "differrence: "<< end.rata_die_days() - start.rata_die_days();
+    House Chicago("Chicago", "Pretty sick ngl");
+    House Texas("Texas", "It's Texas bruh");
+    Chicago.show_info();
+    Chicago.set_available();
+    Chicago.show_info();
+   return 0;
 }

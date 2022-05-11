@@ -7,12 +7,11 @@ class Date{
     int month;
     int year;
     public:
-    Date(int day, int month, int year){
-        this->day = day;
-        this->month = month;
-        this->year = year;
-    }
+    Date();
+    Date(int day, int month, int year);    
     int rata_die_days();
+    void set_date(int day, int month, int year);
+    string get_date();
 };
 
 
