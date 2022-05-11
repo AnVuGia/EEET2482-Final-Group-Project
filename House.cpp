@@ -14,3 +14,6 @@ void House::set_description(string des){
 void House::set_location(string location){
     this->location = location;
 }
+void House::set_available(){
+    
+}
