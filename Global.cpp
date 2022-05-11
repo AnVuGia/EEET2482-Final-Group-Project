@@ -19,7 +19,8 @@ void Global::inputUserData(Member &user, string line){
     while(std::getline(ss, token, ',')){
         outp.push_back(token);
     }
-    user.set_info(stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], outp[5], outp[6]);
+    user.set_info(stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], 
+    stod(outp[5]), stod(outp[6]),outp[7], outp[8], stoi(outp[9]), outp[10], outp[11]);
 }
 void Global::inputData(){
     std::fstream myfile;
@@ -42,5 +43,9 @@ int Global::choice(){
     cout << "\nEnter your choice: ";
     cin >> choice;
     return choice;
+}
+
+void Global::end(){
+
 }
 

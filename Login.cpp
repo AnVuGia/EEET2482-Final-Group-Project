@@ -12,7 +12,7 @@ using std::vector;
 using std::stringstream;
 
 
-void login(Global &program){
+void login(Global *program){
     Member *temp;
     int is_valid = 0;
     string username;string pwd;
@@ -28,6 +28,7 @@ void login(Global &program){
         cout << "Enter your password: ";
         cin >> pwd;
         if(pwd == temp->get_pwd()){
+
             cout << "Log in success full!\n";
             cout <<"This is your menu: \n";
             cout <<"0. Exit \n";

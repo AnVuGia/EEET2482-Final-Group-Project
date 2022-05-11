@@ -10,14 +10,14 @@ void Member::show_info(){
         << this->own_house.get_location()<<"\ndescription: " << this->own_house.get_description() << "]";
 }
 void Member::set_info(int creditPoints, string userName, string fullName, 
-    string phoneNumber, string pwd,string location, string des){
+    string phoneNumber, string pwd, double houserate, double min_ocrate
+    ,string loca,string des,bool avail,string startdate, string enddate){
         this->creditPoints = creditPoints;
         this->userName = userName;
         this->fullName = fullName;
         this->phoneNumber = phoneNumber;
         this->pwd = pwd;
-        this->own_house.set_location(location);
-        this->own_house.set_description(des);
+        this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
     }
 string Member::get_pwd(){
     return this->pwd;

@@ -12,8 +12,10 @@ class Global{
     const string admin_pwd = "admin";
     Global();
     vector <Member>users;
+    Member *CurrentUser;
     void inputUserData(Member &user, string line);
     void inputData();
     int choice();
+    void end();
 };
 #endif
