@@ -15,7 +15,7 @@ class Member {
     public:
     Member(){};
     void show_info();
-    void Member::set_info(int creditPoints, string userName, string fullName, 
+    void set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate);
     string get_pwd();

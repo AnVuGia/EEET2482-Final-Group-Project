@@ -6,8 +6,8 @@ using std::cin;
 void Member::show_info(){
     cout<< "[ User name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
-        <<"Credit: "<< this->creditPoints <<"\nHouse: "
-        << this->own_house.get_location()<<"\ndescription: " << this->own_house.get_description() << "]";
+        <<"Credit: "<< this->creditPoints <<"\nHouse: ";
+        this->own_house.show_info();
 }
 void Member::set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd, double houserate, double min_ocrate

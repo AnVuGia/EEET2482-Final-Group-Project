@@ -68,7 +68,7 @@ void House::show_info(){
     cout << "[ Location: "<< this->location 
         << "\nDescription: "<< this->description;
     if(available){
-        cout << "Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date();
+        cout << " Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
     } else{
         cout <<" ]";
     }
@@ -80,14 +80,13 @@ void House::set_info(double houserate,double min_occ_rate,
        this->location = loca;
        this->description = des;
        this->available = avail;
-        if(this->available){
-            int day,month, year;
-            stringstream ss(startdate); //(day month year)
-            ss >> day >> month >> year;
-            this->start_date.set_date(day,month,year);
-            stringstream ss1(enddate);
-            ss1 >> day >> month >> year;
-            this->end_date.set_date(day, month, year);
-        }
+        int day,month, year;
+        stringstream ss(startdate); //(day month year)
+        ss >> day >> month >> year;
+        this->start_date.set_date(day,month,year);
+        stringstream ss1(enddate);
+        ss1 >> day >> month >> year;
+        this->end_date.set_date(day, month, year);
+        
 }
 

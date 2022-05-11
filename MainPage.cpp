@@ -27,7 +27,7 @@ void user_choice(){
     switch (choice)
     {
     case 2:
-        login(program);
+        login(&program);
         break;
     
     default:
@@ -38,5 +38,6 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
+    cout << "\n" ; program.CurrentUser->show_info();
     return 0;
 }
