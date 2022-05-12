@@ -112,3 +112,9 @@ string House::get_enddate(){
         return "0 0 0";
     }
 }
+void House::set_location(string location){
+    this->location = location;
+}
+void House::set_descrition(string des){
+    this->description = des;
+}

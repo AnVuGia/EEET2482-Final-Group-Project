@@ -57,4 +57,34 @@ void login(Global *program){
     else{
         cout << "No user found...";
     }
+};
+void user_register(Global *program){
+    vector <string> inp;
+    string temp;
+    cout << "In register: \n";
+    bool token = 1;
+    while (token)
+    {
+       cout <<"\nEnter username: ";
+        cin >> temp;
+        for(auto user: program->users){
+            if(temp == user.get_userName()){
+                cout << "\nusername already exist\n"
+                return;
+            }
+        }
+        inp.push_back(temp);
+        cout <<"\nEnter your fullname: "
+        std::getline(cin, temp);
+        inp.push_back(temp);
+        cout << "\nEnter your phone number: ";
+        cin >>  temp;
+        inp.push_back(temp);
+        cout << "\nEnter your house location: ";
+        std::getline(cin, temp);
+        inp.push_back(temp);
+        cout << "\nEnter your house description : ";
+        std::getline(cin, temp);
+        inp.push_back(temp); 
+    }  
 }
