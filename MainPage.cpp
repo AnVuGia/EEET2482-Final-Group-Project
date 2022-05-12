@@ -26,6 +26,9 @@ void user_choice(){
     cin >> choice;
     switch (choice)
     {
+    case 1:
+        program.user_register();
+        break;
     case 2:
         login(&program);
         break;
@@ -38,7 +41,6 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
-    program.CurrentUser->list_house();
     program.end();
     return 0;
 }

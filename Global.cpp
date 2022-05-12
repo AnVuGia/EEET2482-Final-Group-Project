@@ -68,4 +68,45 @@ void Global::end(){
     cout << "\n File saved!";
     myfile.close();
 }
+void Global::user_register(){
+    stringstream ss;
+    string temp;
+    cout << "In register: \n";
+    bool token = 1;
+    do
+    {  token = 0;
+        cout <<"\nEnter new username: ";
+        cin >> temp;
+        for(auto user: this->users){
+            if(temp == user.get_userName()){
+                cout << "\nusername already exist\n";
+                token = 1;
+            }
+        }
+    } while (token);
+    ss<<600<<",";
+    ss<<temp<<",";
+    cout <<"\nEnter your fullname: ";
+    std::getline(cin >> std::ws, temp);
+    ss<<temp<<",";
+    cout << "\nEnter your phone number: ";
+    cin >>  temp;
+    ss<<temp<<",";
+    cout <<"\nEnter your password: ";
+    cin >> temp;
+    ss<<temp<<",";
+    ss<<0<<",";ss<<0<<",";
+    cout << "\nEnter your house location: ";
+    std::getline(cin >> std::ws, temp);
+    ss<<temp<<",";
+    cout << "\nEnter your house description : ";
+    std::getline(cin >> std:: ws, temp);
+    ss<<temp<<","; 
+    ss<<0<<",";ss<<"0 0 0"<<",";ss<<"0 0 0"<<",";
+    Member user_temp;
+    cout<< ss.str();
+    inputUserData(user_temp, ss.str());
+    cout <<"\nafter setinfo";
+    this->users.push_back(user_temp);
+}  
 

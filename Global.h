@@ -16,6 +16,7 @@ class Global{
     void inputUserData(Member &user, string line);
     void inputData();
     int choice();
+    void user_register();
     void end();
 };
 #endif

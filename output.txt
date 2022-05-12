@@ -1,2 +1,3 @@
 500,John,Johnny Dang,120603,3.9,0,Texas,Noice,1,12 6 2003,22 6 2003
-600,An,An Vu,12345,2,0,Chicago,pretty,1,11 2 2022,22 3 2022
+600,An,An Vu,12345,2,0,Chicago,pretty,0,0 0 0,0 0 0
+600,Vu,Anvu,12345,0,0,Tp HochiMinh,Noice,0,0 0 0,0 0 0
