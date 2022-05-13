@@ -26,6 +26,8 @@ class House{
     bool get_availalbe();
     string get_startdate();
     string get_enddate();
+    int get_start_day_rata();
+    int get_end_day_rata();
     //setter method
     void set_info(double houserate,double min_occ_rate, 
     string loca, string des, bool avail,string startdate,string enddate);

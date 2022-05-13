@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #ifndef MEMBER_H
 #define MEMBER_H
 #include "House.h"
@@ -14,14 +15,13 @@ class Member {
     string pwd;
     double own_rating_score;
     House own_house;
-    vector <string> borrowed_house;
     vector <Request> requests;
     public:
     Member(){};
     //methods
     void show_info();
     void set_info(int creditPoints, string userName, string fullName, 
-    string phoneNumber, string pwd, double houserate, double min_ocrate
+    string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
    
@@ -40,9 +40,12 @@ class Member {
     string get_house_enddate();
     double get_own_rating_score();
     void get_full_house_info();
-    string get_borrowed_house_from();
+    void get_borrowed_house_from();
+    vector <Request> get_req_list();
+    int get_start_value();
+    int get_end_value();
     //setter
     void set_credits(int creds);
-    void set_borrowed_house(string data);
+    void set_request(Request req);
 };
 #endif

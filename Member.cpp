@@ -13,7 +13,7 @@ void Member::show_info(){
         this->own_house.show_info();
 }
 void Member::set_info(int creditPoints, string userName, string fullName, 
-    string phoneNumber, string pwd, double houserate, double min_ocrate
+    string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate){
         this->creditPoints = creditPoints;
         this->userName = userName;
@@ -21,7 +21,7 @@ void Member::set_info(int creditPoints, string userName, string fullName,
         this->phoneNumber = phoneNumber;
         this->pwd = pwd;
         this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
-
+        this->own_rating_score = own_rating;
     }
 
 //getter method
@@ -64,12 +64,20 @@ int Member::get_creds(){
 void Member::get_full_house_info(){
     this->own_house.show_info();
 }
-string Member::get_borrowed_house_from(){
-    for(auto data: this->borrowed_house){
-        cout <<"\n"<< data;
-    };
+double Member::get_own_rating_score(){
+    return this->own_rating_score;
+}
+int Member::get_start_value(){
+    return this->own_house.get_start_day_rata();
+}
+int Member::get_end_value(){
+    return this->own_house.get_end_day_rata();
 }
 //
+
+vector <Request>Member:: get_req_list(){
+    return this->requests;
+}
 void Member::list_house(){
     this->own_house.set_available();
 }
@@ -78,6 +86,7 @@ void Member::list_house(){
 void Member::set_credits(int creds){
     this->creditPoints = creds;
 }
-void Member::set_borrowed_house(string data){
-    this->borrowed_house.push_back(data);
+
+void Member::set_request(Request req){
+    this->requests.push_back(req);
 }

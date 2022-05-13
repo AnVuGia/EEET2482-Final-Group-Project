@@ -25,6 +25,7 @@ class Request{
     void set_status(int stat);
     //
     void show_req();
+    void set_req(int status, string req_from, double occ_rate, string start_date, string end_date);
 };
 
 #endif

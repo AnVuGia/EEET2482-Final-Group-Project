@@ -41,7 +41,6 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
-    program.CurrentUser->list_house();
     find_suitable_house(program.CurrentUser, &program);
     program.end();
     return 0;

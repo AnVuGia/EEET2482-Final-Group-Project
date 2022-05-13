@@ -1,5 +1,5 @@
 #include "Request.h"
-
+#include <sstream>
 using std::string;
 using std::cout;
 using std::cin;
@@ -37,6 +37,18 @@ void Request::set_status(int stat){
     this->status = stat;
 }
 //
+void Request::set_req(int status, string req_from, double occ_rate, string start_date, string end_date){
+    this->status = status;
+    this->req_from = req_from;
+    this->occ_rate = occ_rate;
+    std::stringstream sstart(start_date);
+    int day,month,year;
+    sstart >>day>>month>>year;
+    this->start_date.set_date(day,month,year);
+    std::stringstream ssend(end_date);
+    ssend>>day>>month>>year;
+    this->end_date.set_date(day,month,year);
+}
 void Request::show_req(){
     cout <<"[ From: " << this->req_from << "\n"
         <<"Occupier rating: " << this->occ_rate <<"\n"

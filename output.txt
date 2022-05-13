@@ -1,4 +1,3 @@
-500,John,Johnny Dang,120603,3.9,0,Hanoi,Noice,1,12 6 2003,22 6 2003,0
-600,An,An Vu,12345,2,0,Da Nang,pretty,0,0 0 0,0 0 0,0
-600,Bill,Bill Gates,12345,2,0,Saigon,slick,0,0 0 0,0 0 0,0
-600,anvjp,An Vu,d1tmeMicho$,0,0,Hanoi,Thanh Hoa,0,0 0 0,0 0 0,0
+500,John,Johnny Dang,01234,120603,3,3.9,0,Hanoi,Noice,1,12 6 2003,22 6 2003,1,An,3,12 6 2003,15 6 2003,1,An,3,19 6 2003,20 6 2003,END
+600,An,An Vu,012345,12345,3,2,0,Da Nang,pretty,0,0 0 0,0 0 0,END
+600,Bill,Bill Gates,012345,12345,3,2,0,Saigon,slick,0,0 0 0,0 0 0,END

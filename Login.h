@@ -4,5 +4,5 @@
 #include "Member.h"
 void login(Global *program);
 void find_suitable_house(Member *currentUser,Global *program);
-void choose_house(Member *currenUser, Member *chosenUser);
+void send_request(Member *currenUser, Member *chosenUser);
 #endif

@@ -59,8 +59,58 @@ void login(Global *program){
         cout << "No user found...";
     }
 };
-void choose_house(Member *currentUser, Member *chosenUser){
-    currentUser->set_borrowed_house_from(chosenUser->get_userName());   
+void send_request(Member *currentUser, Member *chosenUser){
+    Request temp_req;   
+        string token;
+        string inp;
+        Date temp_start,temp_end;
+        //set start date
+        bool is_valid = false;
+        do
+        {   stringstream start_date;
+            stringstream start_res;
+            cout << "\nEnter start date: (dd/mm/yyyy): ";
+            cin >> inp;
+            start_date << inp;
+            int day,month,year;
+            while(std::getline(start_date, token, '/')) {
+            start_res << token <<" ";
+            }
+            start_res >> day>>month>>year;
+            temp_start.set_date(day,month,year);
+            if (temp_start.rata_die_days() < chosenUser->get_start_value())
+                {
+                is_valid =true;
+                cout << "\nInvalid input!\n";
+            }else{
+                is_valid = false;
+            }
+        } while (is_valid);
+        
+        
+        
+        //set end date
+        do{   stringstream date_end;
+            stringstream end_res;
+            cout << "\nEnter end date: (dd/mm/yyyy): ";
+            cin >> inp;
+            date_end << inp;
+            int day,month,year;
+            while(std::getline(date_end, token, '/')) {
+            end_res << token <<" ";
+            }
+            end_res >> day>>month>>year;
+            temp_end.set_date(day,month,year);
+            if (temp_end.rata_die_days() > chosenUser->get_end_value())
+                {
+                is_valid =true;
+                cout << "\nInvalid input!\n";
+            }else{
+                is_valid = false;
+            }
+        } while (is_valid);
+    temp_req.set_req(1,currentUser->get_userName(),currentUser->get_own_rating_score(),temp_start.get_date(),temp_end.get_date());
+    chosenUser->set_request(temp_req);
 }
 void find_suitable_house(Member *currentUser,Global *program){
     //vector_ptr để lưu địa chỉ của obj user
@@ -124,7 +174,7 @@ void find_suitable_house(Member *currentUser,Global *program){
                 cout <<"\nYour house choice is: "<<"\n"; 
                 cout << mem[int_choice-1]->get_userName() <<" 's house: \n";
                 mem[int_choice-1]->get_full_house_info() ; 
-                choose_house(program->CurrentUser, mem[int_choice-1]);
+                send_request(program->CurrentUser, mem[int_choice-1]);
                 token = false;
             }
         } while (token);
