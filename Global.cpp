@@ -20,7 +20,7 @@ void Global::inputUserData(Member &user, string line){
         outp.push_back(token);
     }
     user.set_info(std::stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], 
-    std::stod(outp[5]), std::stod(outp[6]),outp[7], outp[8], std::stoi(outp[9]), outp[10], outp[11], outp[12]);
+    std::stod(outp[5]), std::stod(outp[6]),outp[7], outp[8], std::stoi(outp[9]), outp[10], outp[11]);
 }
 void Global::inputData(){
     std::fstream myfile;

@@ -2,7 +2,9 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 #include "House.h"
+#include "Request.h"
 using std::string;
+using std::vector;
 class Member {
     protected:
     int creditPoints;
@@ -12,14 +14,15 @@ class Member {
     string pwd;
     double own_rating_score;
     House own_house;
-    string borrowed_house_from;
+    vector <string> borrowed_house;
+    vector <Request> requests;
     public:
     Member(){};
     //methods
     void show_info();
     void set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd, double houserate, double min_ocrate
-    ,string loca,string des,bool avail,string startdate, string enddate, string borrowed_house);
+    ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
    
     //getter methods
@@ -40,5 +43,6 @@ class Member {
     string get_borrowed_house_from();
     //setter
     void set_credits(int creds);
+    void set_borrowed_house(string data);
 };
 #endif
