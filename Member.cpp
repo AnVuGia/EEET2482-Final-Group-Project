@@ -14,13 +14,14 @@ void Member::show_info(){
 }
 void Member::set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd, double houserate, double min_ocrate
-    ,string loca,string des,bool avail,string startdate, string enddate){
+    ,string loca,string des,bool avail,string startdate, string enddate,string borrowed_house){
         this->creditPoints = creditPoints;
         this->userName = userName;
         this->fullName = fullName;
         this->phoneNumber = phoneNumber;
         this->pwd = pwd;
         this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
+        this->borrowed_house_from = borrowed_house;
     }
 
 //getter method
@@ -69,4 +70,9 @@ string Member::get_borrowed_house_from(){
 //
 void Member::list_house(){
     this->own_house.set_available();
+}
+//setter
+
+void Member::set_credits(int creds){
+    this->creditPoints = creds;
 }

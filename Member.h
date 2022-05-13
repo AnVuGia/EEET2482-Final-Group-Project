@@ -19,7 +19,7 @@ class Member {
     void show_info();
     void set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd, double houserate, double min_ocrate
-    ,string loca,string des,bool avail,string startdate, string enddate);
+    ,string loca,string des,bool avail,string startdate, string enddate, string borrowed_house);
     void list_house();
    
     //getter methods
@@ -38,5 +38,7 @@ class Member {
     double get_own_rating_score();
     void get_full_house_info();
     string get_borrowed_house_from();
+    //setter
+    void set_credits(int creds);
 };
 #endif

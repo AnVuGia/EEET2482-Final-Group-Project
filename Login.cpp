@@ -59,8 +59,8 @@ void login(Global *program){
         cout << "No user found...";
     }
 };
-void choose_house(Member *currenUser, Member *chosenUser){
-  
+void choose_house(Member *currentUser, Member *chosenUser){
+    currentUser->set_borrowed_house_from(chosenUser->get_userName());   
 }
 void find_suitable_house(Member *currentUser,Global *program){
     //vector_ptr để lưu địa chỉ của obj user
@@ -122,7 +122,9 @@ void find_suitable_house(Member *currentUser,Global *program){
             }else{
                 //print ra lựa chọn của user
                 cout <<"\nYour house choice is: "<<"\n"; 
-                mem[int_choice-1]->get_full_house_info();
+                cout << mem[int_choice-1]->get_userName() <<" 's house: \n";
+                mem[int_choice-1]->get_full_house_info() ; 
+                choose_house(program->CurrentUser, mem[int_choice-1]);
                 token = false;
             }
         } while (token);

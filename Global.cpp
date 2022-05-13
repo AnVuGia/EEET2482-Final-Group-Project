@@ -20,7 +20,7 @@ void Global::inputUserData(Member &user, string line){
         outp.push_back(token);
     }
     user.set_info(std::stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], 
-    std::stod(outp[5]), std::stod(outp[6]),outp[7], outp[8], std::stoi(outp[9]), outp[10], outp[11]);
+    std::stod(outp[5]), std::stod(outp[6]),outp[7], outp[8], std::stoi(outp[9]), outp[10], outp[11], outp[12]);
 }
 void Global::inputData(){
     std::fstream myfile;
@@ -63,7 +63,8 @@ void Global::end(){
         <<user.get_house_des()<<","
         <<user.get_house_avail()<<","
         <<user.get_house_startdate()<<","
-        <<user.get_house_enddate()<<"\n";
+        <<user.get_house_enddate()<<","
+        <<user.get_borrowed_house_from()<<"\n";
     }
     cout << "\n File saved!";
     myfile.close();
@@ -96,17 +97,16 @@ void Global::user_register(){
     cin >> temp;
     ss<<temp<<",";
     ss<<0<<",";ss<<0<<",";
-    cout << "\nEnter your house location: ";
+    cout << "\nEnter your house location (Hanoi, Saigon, Da Nang): ";
     std::getline(cin >> std::ws, temp);
     ss<<temp<<",";
     cout << "\nEnter your house description : ";
     std::getline(cin >> std:: ws, temp);
     ss<<temp<<","; 
-    ss<<0<<",";ss<<"0 0 0"<<",";ss<<"0 0 0"<<",";
-    Member user_temp;
-    cout<< ss.str();
+    ss<<0<<",";ss<<"0 0 0"<<",";ss<<"0 0 0"<<","<<"0";
+    Member user_temp; 
     inputUserData(user_temp, ss.str());
-    cout <<"\nafter setinfo";
     this->users.push_back(user_temp);
+    this->CurrentUser = &user_temp;
 }  
 
