@@ -5,6 +5,7 @@
 #include "Member.h"
 #include "Global.h"
 #include "Login.h"
+#include "Member.h"
 using std::cin;
 using std::cout;
 using std::string;
@@ -58,4 +59,71 @@ void login(Global *program){
         cout << "No user found...";
     }
 };
-
+void choose_house(Member *currenUser, Member *chosenUser){
+  
+}
+void find_suitable_house(Member *currentUser,Global *program){
+    //vector_ptr để lưu địa chỉ của obj user
+    vector <Member*> mem;
+    string city;
+    do
+    {
+        cout <<"\nEnter your city: (Hanoi, Saigon, Da Nang)\n";
+        std::getline(cin >>std::ws, city);
+        int count = 1;
+         //chạy qua vector program->users để kiếm địa chỉ phù hợp với điều kiện available && ==loca
+        for(int i = 0; i < program->users.size(); i++){
+             if(program->users[i].get_house_loca() == city 
+             && program->users[i].get_house_avail() == 1 && 
+             &program->users[i] != program->CurrentUser){
+                mem.push_back(&program->users[i]);
+                cout << "House no." <<count <<":\n";
+                program->users[i].get_full_house_info();
+            }
+        }
+        if(mem.size() == 0){
+            cout << "No house availabel in "<< city<<" ,do you want to choose again? " <<"\n";
+            cout << "0. Exit\n";
+            cout << "1. Again\n";
+            int user_choice = program->choice();
+            if(user_choice == 0){
+                cout << "Exit!\n";
+                return;
+            } else if(user_choice > 1 || user_choice < 0){
+                cout << "Invalid input";
+                return;
+            }
+        }        
+    } while (!mem.size());
+    
+    //User chọn thành phố cho riêng mình (q7)
+    string choice;
+    bool token = true;
+        do
+        {   
+            //Nhập vào lựa chọn của user
+            cout <<"\nEnter your choice: (house no:)";
+            cin >> choice;
+            int int_choice = std::stoi(choice);
+            if(int_choice > mem.size() || int_choice <= 0){
+                //Trường hợp lựa chọn của user vượt qua vector.size()
+                cout << "\nNot a valid choice, do you want to choose again?\n";
+                cout << "0. Exit\n";
+                cout << "1. Again\n";
+                int user_choice = program->choice();
+                if(user_choice == 0){
+                    token = false;
+                    cout << "Exit!\n";
+                    return;
+                } else if(user_choice > 1 || user_choice < 0){
+                    cout << "Invalid input";
+                    return;
+            }
+            }else{
+                //print ra lựa chọn của user
+                cout <<"\nYour house choice is: "<<"\n"; 
+                mem[int_choice-1]->get_full_house_info();
+                token = false;
+            }
+        } while (token);
+}

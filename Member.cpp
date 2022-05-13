@@ -1,8 +1,11 @@
 #include "Member.h"
 #include <iostream>
+#include <vector>
+#include <sstream>
 using std::string;
 using std::cout;
 using std::cin;
+using std::vector;
 void Member::show_info(){
     cout<< "[ User name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
@@ -56,6 +59,12 @@ string Member::get_house_enddate(){
 }
 int Member::get_creds(){
     return this->creditPoints;
+}
+void Member::get_full_house_info(){
+    this->own_house.show_info();
+}
+string Member::get_borrowed_house_from(){
+    return this->borrowed_house_from;
 }
 //
 void Member::list_house(){
