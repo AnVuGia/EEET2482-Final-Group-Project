@@ -85,8 +85,9 @@ void House::set_info(double houserate,double min_occ_rate,
 }
 void House::show_ratings(){
     int i =1;
+    cout << "House ratings: " << std::endl;
     for(Rating r: this->ratings){
-        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment();
+        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment() << std::endl;
         i++; 
     }
 };

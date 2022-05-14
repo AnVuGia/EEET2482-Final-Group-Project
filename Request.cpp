@@ -56,16 +56,16 @@ void Request::show_req(){
         switch (this->status)
         {
         case 0:
-            cout << "Rejected ]";
+            cout << "Rejected ]" << std::endl;
             break;
         case 1:
-            cout << "Pending ]";
+            cout << "Pending ]" << std::endl;
             break;
         case 2:
-            cout << "Accepted ]";
+            cout << "Accepted ]" << std::endl;
             break;
         default:
-            cout << "Not valid ]";
+            cout << "Not valid ]" << std::endl;
             break;
         }
 }   

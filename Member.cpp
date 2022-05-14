@@ -32,6 +32,9 @@ void Member::show_requests(){
         i++;
     }
 }
+void Member::show_house_ratings(){
+    this->own_house.show_ratings();
+}
 //getter method
 string Member::get_pwd(){
     return this->pwd;

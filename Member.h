@@ -27,6 +27,7 @@ class Member {
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
     void show_requests();
+    void show_house_ratings();
     //getter methods
     int get_creds();
     string get_pwd();

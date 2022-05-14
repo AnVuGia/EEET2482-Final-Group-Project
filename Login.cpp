@@ -184,7 +184,7 @@ void rate_house(Member *chosenUser){
     string comment;
     cout << "\nEnter score: ";
     cin >> score;
-    cout << "\nAdd a comment: ";
-    cin >> comment;
+    cout << "Add a comment: ";
+    std::getline(cin >> std::ws, comment);
     chosenUser->set_house_rating(Rating(score,comment));
 }
