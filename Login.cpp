@@ -179,3 +179,12 @@ void find_suitable_house(Member *currentUser,Global *program){
             }
         } while (token);
 }
+void showHouse(Global *program) //câu 2
+{
+    for(size_t i = 0; i < program->users.size(); i++){
+        if (program->users[i].get_own_house().get_availalbe())
+        {
+            program->users[i].get_own_house().show_short_info();
+        }
+    }
+}

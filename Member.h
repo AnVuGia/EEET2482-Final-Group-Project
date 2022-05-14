@@ -16,6 +16,7 @@ class Member {
     double own_rating_score;
     House own_house;
     vector <Request> requests;
+    House current_rented_house;
     public:
     Member(){};
     //methods
@@ -24,10 +25,12 @@ class Member {
     string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
+    void return_house();
    
     //getter methods
     int get_creds();
     string get_pwd();
+    House get_own_house();
     string get_userName();
     string get_fullName();
     string get_phoneNumber();
@@ -44,6 +47,8 @@ class Member {
     vector <Request> get_req_list();
     int get_start_value();
     int get_end_value();
+    House get_current_rented_house();
+
     //setter
     void set_credits(int creds);
     void set_request(Request req);

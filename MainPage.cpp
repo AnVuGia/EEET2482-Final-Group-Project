@@ -27,7 +27,8 @@ void user_choice(){
     switch (choice)
     {
     case 1:
-        program.user_register();
+        // program.user_register();
+        showHouse(&program); // test câu 2
         break;
     case 2:
         login(&program);
