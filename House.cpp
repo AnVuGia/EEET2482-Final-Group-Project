@@ -91,7 +91,14 @@ void House::set_info(double houserate,double min_occ_rate,
         this->end_date.set_date(day, month, year);
         
 }
-
+void House::show_ratings(){
+    int i =1;
+    cout << "House ratings: " << std::endl;
+    for(Rating r: this->ratings){
+        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment() << std::endl;
+        i++; 
+    }
+};
 //getter
 string House::get_location(){
     return this->location;
@@ -128,6 +135,10 @@ int House::get_start_day_rata(){
 int House::get_end_day_rata(){
     return this->end_date.rata_die_days();
 }
+
+Comment House::get_house_comments(){
+    return this->house_comments;
+}
 //setter
 void House::set_location(string location){
     this->location = location;
@@ -135,11 +146,12 @@ void House::set_location(string location){
 void House::set_descrition(string des){
     this->description = des;
 }
+void House::set_rating(Rating rate){
+    this->ratings.push_back(rate);
+}
 
-void House::add_house_comments(string comment){
-    this->house_comments.push_back(comment);
-} // câu 12 ( để sẳn)
+//putter
+void House::put_comment(string comment, Member& member){
+    this->house_comments.add_comment(comment, member);
+}
 
-vector<string> House::get_house_comments(){
-    return this->house_comments;
-} // câu 12 ( để sẳn)

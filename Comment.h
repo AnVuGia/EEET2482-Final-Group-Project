@@ -4,6 +4,7 @@
 #ifndef COMMENT_H
 #define COMMENT_H
 using std::string;
+using std::vector;
 
 class Comment{
     protected:

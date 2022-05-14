@@ -27,3 +27,8 @@ string Date::get_date(){
 int Date::get_day(){
     return this->day;
 }
+string Date::format(){
+    std::stringstream ss;
+    ss << this->day <<"/" <<this->month <<"/"<<this->year;
+    return ss.str();
+}

@@ -4,6 +4,7 @@
 #define MEMBER_H
 #include "House.h"
 #include "Request.h"
+#include "Rating.h"
 using std::string;
 using std::vector;
 class Member {
@@ -15,6 +16,7 @@ class Member {
     string pwd;
     double own_rating_score;
     House own_house;
+    vector<Rating> ratings;
     vector <Request> requests;
     House current_rented_house;
     public:
@@ -25,8 +27,8 @@ class Member {
     string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
-    void return_house();
-    void put_comment(string comment);
+    void show_requests();
+    void show_house_ratings();
     //getter methods
     int get_creds();
     string get_pwd();
@@ -52,5 +54,9 @@ class Member {
     //setter
     void set_credits(int creds);
     void set_request(Request req);
+    void set_rating(Rating rate);
+    void set_house_rating(Rating rate);
+
+    void return_house();
 };
 #endif

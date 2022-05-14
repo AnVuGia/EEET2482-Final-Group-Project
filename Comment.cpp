@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Comment.h"
+#include "Member.h"
 using namespace std;
 
 
