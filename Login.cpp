@@ -5,6 +5,7 @@
 #include "Member.h"
 #include "Global.h"
 #include "Login.h"
+#include "Member.h"
 using std::cin;
 using std::cout;
 using std::string;
@@ -57,4 +58,124 @@ void login(Global *program){
     else{
         cout << "No user found...";
     }
+};
+void send_request(Member *currentUser, Member *chosenUser){
+    Request temp_req;   
+        string token;
+        string inp;
+        Date temp_start,temp_end;
+        //set start date
+        bool is_valid = false;
+        do
+        {   stringstream start_date;
+            stringstream start_res;
+            cout << "\nEnter start date: (dd/mm/yyyy): ";
+            cin >> inp;
+            start_date << inp;
+            int day,month,year;
+            while(std::getline(start_date, token, '/')) {
+            start_res << token <<" ";
+            }
+            start_res >> day>>month>>year;
+            temp_start.set_date(day,month,year);
+            if (temp_start.rata_die_days() < chosenUser->get_start_value())
+                {
+                is_valid =true;
+                cout << "\nInvalid input!\n";
+            }else{
+                is_valid = false;
+            }
+        } while (is_valid);
+        
+        
+        
+        //set end date
+        do{   stringstream date_end;
+            stringstream end_res;
+            cout << "\nEnter end date: (dd/mm/yyyy): ";
+            cin >> inp;
+            date_end << inp;
+            int day,month,year;
+            while(std::getline(date_end, token, '/')) {
+            end_res << token <<" ";
+            }
+            end_res >> day>>month>>year;
+            temp_end.set_date(day,month,year);
+            if (temp_end.rata_die_days() > chosenUser->get_end_value())
+                {
+                is_valid =true;
+                cout << "\nInvalid input!\n";
+            }else{
+                is_valid = false;
+            }
+        } while (is_valid);
+    temp_req.set_req(1,currentUser->get_userName(),currentUser->get_own_rating_score(),temp_start.get_date(),temp_end.get_date());
+    chosenUser->set_request(temp_req);
+}
+void find_suitable_house(Member *currentUser,Global *program){
+    //vector_ptr để lưu địa chỉ của obj user
+    vector <Member*> mem;
+    string city;
+    do
+    {
+        cout <<"\nEnter your city: (Hanoi, Saigon, Da Nang)\n";
+        std::getline(cin >>std::ws, city);
+        int count = 1;
+         //chạy qua vector program->users để kiếm địa chỉ phù hợp với điều kiện available && ==loca
+        for(int i = 0; i < program->users.size(); i++){
+             if(program->users[i].get_house_loca() == city 
+             && program->users[i].get_house_avail() == 1 && 
+             &program->users[i] != program->CurrentUser){
+                mem.push_back(&program->users[i]);
+                cout << "House no." <<count <<":\n";
+                program->users[i].get_full_house_info();
+            }
+        }
+        if(mem.size() == 0){
+            cout << "No house availabel in "<< city<<" ,do you want to choose again? " <<"\n";
+            cout << "0. Exit\n";
+            cout << "1. Again\n";
+            int user_choice = program->choice();
+            if(user_choice == 0){
+                cout << "Exit!\n";
+                return;
+            } else if(user_choice > 1 || user_choice < 0){
+                cout << "Invalid input";
+                return;
+            }
+        }        
+    } while (!mem.size());
+    
+    //User chọn thành phố cho riêng mình (q7)
+    string choice;
+    bool token = true;
+        do
+        {   
+            //Nhập vào lựa chọn của user
+            cout <<"\nEnter your choice: (house no:)";
+            cin >> choice;
+            int int_choice = std::stoi(choice);
+            if(int_choice > mem.size() || int_choice <= 0){
+                //Trường hợp lựa chọn của user vượt qua vector.size()
+                cout << "\nNot a valid choice, do you want to choose again?\n";
+                cout << "0. Exit\n";
+                cout << "1. Again\n";
+                int user_choice = program->choice();
+                if(user_choice == 0){
+                    token = false;
+                    cout << "Exit!\n";
+                    return;
+                } else if(user_choice > 1 || user_choice < 0){
+                    cout << "Invalid input";
+                    return;
+            }
+            }else{
+                //print ra lựa chọn của user
+                cout <<"\nYour house choice is: "<<"\n"; 
+                cout << mem[int_choice-1]->get_userName() <<" 's house: \n";
+                mem[int_choice-1]->get_full_house_info() ; 
+                send_request(program->CurrentUser, mem[int_choice-1]);
+                token = false;
+            }
+        } while (token);
 }

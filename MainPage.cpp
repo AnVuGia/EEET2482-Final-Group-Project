@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Member.h"
 #include "Login.h"
+#include "Member.h"
 #include "Global.h"
 #include "House.h"
 using std::cin;
@@ -26,6 +26,9 @@ void user_choice(){
     cin >> choice;
     switch (choice)
     {
+    case 1:
+        program.user_register();
+        break;
     case 2:
         login(&program);
         break;
@@ -38,7 +41,7 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
-    program.CurrentUser->list_house();
+    find_suitable_house(program.CurrentUser, &program);
     program.end();
     return 0;
 }

@@ -83,6 +83,7 @@ void House::set_info(double houserate,double min_occ_rate,
         this->end_date.set_date(day, month, year);
         
 }
+//getter
 string House::get_location(){
     return this->location;
 }
@@ -111,4 +112,17 @@ string House::get_enddate(){
     } else{
         return "0 0 0";
     }
+}
+int House::get_start_day_rata(){
+    return this->start_date.rata_die_days();
+}
+int House::get_end_day_rata(){
+    return this->end_date.rata_die_days();
+}
+//setter
+void House::set_location(string location){
+    this->location = location;
+}
+void House::set_descrition(string des){
+    this->description = des;
 }
