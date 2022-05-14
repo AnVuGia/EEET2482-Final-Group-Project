@@ -98,3 +98,7 @@ void Member::set_credits(int creds){
 void Member::set_request(Request req){
     this->requests.push_back(req);
 }
+
+void Member::set_rating(Rating rate){
+    this->ratings.push_back(rate);
+}

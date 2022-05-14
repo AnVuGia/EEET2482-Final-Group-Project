@@ -4,6 +4,7 @@
 #define MEMBER_H
 #include "House.h"
 #include "Request.h"
+#include "Rating.h"
 using std::string;
 using std::vector;
 class Member {
@@ -15,6 +16,7 @@ class Member {
     string pwd;
     double own_rating_score;
     House own_house;
+    vector<Rating> ratings;
     vector <Request> requests;
     public:
     Member(){};
@@ -47,5 +49,6 @@ class Member {
     //setter
     void set_credits(int creds);
     void set_request(Request req);
+    void set_rating(Rating rate);
 };
 #endif
