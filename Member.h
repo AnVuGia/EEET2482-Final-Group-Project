@@ -13,16 +13,11 @@ class Member {
     string fullName;
     string phoneNumber;
     string pwd;
-<<<<<<< HEAD
     double own_rating_score;
     House own_house;
     vector <Request> requests;
     House current_rented_house;
     public:
-=======
-    double occupier_rating_score;
-    // House own_house;
->>>>>>> origin/hung
     Member(){};
     //methods
     void show_info();
@@ -31,7 +26,7 @@ class Member {
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
     void return_house();
-   
+    void put_comment(string comment);
     //getter methods
     int get_creds();
     string get_pwd();

@@ -2,26 +2,23 @@
 #include <vector>
 #include "Date.h"
 #include "Member.h"
+#include "Comment.h"
 #ifndef HOUSE_H
 #define HOUSE_H
 using std::string;
 using std::vector;
 class House{
-<<<<<<< HEAD
     protected:
     double house_rating_score = 0;
     double min_occupier_rating = 0;
     double consumming_point = 0;
-=======
-    double house_rating_score;
->>>>>>> origin/hung
     string location;
     string description;
     bool available = false;
     Date start_date;
     Date end_date;
     // Member renter;
-    vector<string> house_comments;
+    Comment house_comments;
 
     public:
     House();
