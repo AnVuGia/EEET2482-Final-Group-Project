@@ -23,7 +23,15 @@ void Member::set_info(int creditPoints, string userName, string fullName,
         this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
         this->own_rating_score = own_rating;
     }
-
+void Member::show_requests(){
+    cout << "\nCurrent requests: " << std::endl;
+    int i = 1;
+    for(Request r: this->requests){
+        cout << i << ". ";
+        r.show_req();
+        i++;
+    }
+}
 //getter method
 string Member::get_pwd(){
     return this->pwd;

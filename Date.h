@@ -13,6 +13,7 @@ class Date{
     void set_date(int day, int month, int year);
     string get_date();
     int get_day();
+    string format();
 };
 
 

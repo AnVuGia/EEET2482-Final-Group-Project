@@ -50,9 +50,9 @@ void Request::set_req(int status, string req_from, double occ_rate, string start
     this->end_date.set_date(day,month,year);
 }
 void Request::show_req(){
-    cout <<"[ From: " << this->req_from << "\n"
-        <<"Occupier rating: " << this->occ_rate <<"\n"
-        <<"Period: " << this->get_start_date()<< " - " << this->get_end_date() <<"\n";
+    cout <<"[ From: " << this->req_from << " || "
+        <<"Occupier rating: " << this->occ_rate <<" || "
+        <<"Period: " << this->start_date.format()<< " - " << this->end_date.format() <<" || ";
         switch (this->status)
         {
         case 0:

@@ -24,7 +24,7 @@ class Member {
     string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
     ,string loca,string des,bool avail,string startdate, string enddate);
     void list_house();
-   
+    void show_requests();
     //getter methods
     int get_creds();
     string get_pwd();
