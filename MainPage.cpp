@@ -27,9 +27,10 @@ void user_choice(){
     switch (choice)
     {
     case 1:
-        // program.user_register();
         showHouse(&program); // test câu 2
         break;
+        // program.user_register();
+        // break;
     case 2:
         login(&program);
         break;
@@ -44,8 +45,8 @@ int main(){
     user_choice();
     rate_house(program.CurrentUser);
     program.CurrentUser->show_house_ratings();
-    //find_suitable_house(program.CurrentUser, &program);
-    // program.CurrentUser->show_requests();
+    find_suitable_house(program.CurrentUser, &program);
+    program.CurrentUser->show_requests();
     program.end();
     return 0;
 }

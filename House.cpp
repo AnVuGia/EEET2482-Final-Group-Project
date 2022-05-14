@@ -67,7 +67,6 @@ void House::show_info(){
         cout <<" ]";
     }
 }
-
 void House::show_short_info(){
     cout << "\n[ Location: " << this->location << std::endl;
     cout << "Description: " << this->description << std::endl;
@@ -135,10 +134,6 @@ int House::get_start_day_rata(){
 int House::get_end_day_rata(){
     return this->end_date.rata_die_days();
 }
-
-Comment House::get_house_comments(){
-    return this->house_comments;
-}
 //setter
 void House::set_location(string location){
     this->location = location;
@@ -149,9 +144,3 @@ void House::set_descrition(string des){
 void House::set_rating(Rating rate){
     this->ratings.push_back(rate);
 }
-
-//putter
-void House::put_comment(string comment, Member& member){
-    this->house_comments.add_comment(comment, member);
-}
-

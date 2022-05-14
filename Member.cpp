@@ -11,7 +11,6 @@ void Member::show_info(){
         << "Full name: "<< this->fullName <<"\n"
         <<"Credit: "<< this->creditPoints <<"\nHouse: ";
         this->own_house.show_info();
-        cout << std::endl;
 }
 void Member::set_info(int creditPoints, string userName, string fullName, 
     string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
@@ -76,17 +75,6 @@ string Member::get_house_enddate(){
 int Member::get_creds(){
     return this->creditPoints;
 }
-House Member::get_current_rented_house() {
-    return this->current_rented_house;
-}
-//
-void Member::list_house(){
-    this->own_house.set_available();
-}
-
-void Member::return_house() {
-    // if (this->get_current_rented_house() != NULL) {}
-}
 void Member::get_full_house_info(){
     this->own_house.show_info();
 }
@@ -103,6 +91,9 @@ int Member::get_end_value(){
 
 vector <Request>Member:: get_req_list(){
     return this->requests;
+}
+void Member::list_house(){
+    this->own_house.set_available();
 }
 //setter
 

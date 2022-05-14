@@ -179,15 +179,6 @@ void find_suitable_house(Member *currentUser,Global *program){
             }
         } while (token);
 }
-void rate_house(Member *chosenUser){
-    double score;
-    string comment;
-    cout << "\nEnter score: ";
-    cin >> score;
-    cout << "Add a comment: ";
-    std::getline(cin >> std::ws, comment);
-    chosenUser->set_house_rating(Rating(score,comment));
-}
 
 void showHouse(Global *program)
 {
@@ -198,3 +189,14 @@ void showHouse(Global *program)
         }
     }
 }
+
+void rate_house(Member *chosenUser){
+    double score;
+    string comment;
+    cout << "\nEnter score: ";
+    cin >> score;
+    cout << "Add a comment: ";
+    std::getline(cin >> std::ws, comment);
+    chosenUser->set_house_rating(Rating(score,comment));
+}
+

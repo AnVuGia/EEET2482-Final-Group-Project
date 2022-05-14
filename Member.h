@@ -18,7 +18,6 @@ class Member {
     House own_house;
     vector<Rating> ratings;
     vector <Request> requests;
-    House current_rented_house;
     public:
     Member(){};
     //methods
@@ -49,14 +48,10 @@ class Member {
     vector <Request> get_req_list();
     int get_start_value();
     int get_end_value();
-    House get_current_rented_house();
-
     //setter
     void set_credits(int creds);
     void set_request(Request req);
     void set_rating(Rating rate);
     void set_house_rating(Rating rate);
-
-    void return_house();
 };
 #endif

@@ -1,9 +1,6 @@
 #include <iostream>
-#include <vector>
 #include "Date.h"
 #include "Rating.h"
-#include "Comment.h"
-#include "Member.h"
 #include <vector>
 #ifndef HOUSE_H
 #define HOUSE_H
@@ -20,7 +17,6 @@ class House{
     Date start_date;
     Date end_date;
     vector<Rating> ratings;
-    Comment house_comments;
     public:
     House();
     House(string location, string description);
@@ -28,8 +24,6 @@ class House{
     void set_available();
     void show_ratings();
     void show_short_info();
-    void put_comment(string comment, Member& member);
-
     //getter method
     string get_location();
     string get_description();
@@ -40,8 +34,6 @@ class House{
     string get_enddate();
     int get_start_day_rata();
     int get_end_day_rata();
-    Comment get_house_comments();
-    
     //setter method
     void set_info(double houserate,double min_occ_rate, 
     string loca, string des, bool avail,string startdate,string enddate);

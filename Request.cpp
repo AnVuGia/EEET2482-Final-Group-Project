@@ -36,7 +36,6 @@ void Request::set_occ_rate(double rating){
 void Request::set_status(int stat){
     this->status = stat;
 }
-
 //
 void Request::set_req(int status, string req_from, double occ_rate, string start_date, string end_date){
     this->status = status;
@@ -50,7 +49,6 @@ void Request::set_req(int status, string req_from, double occ_rate, string start
     ssend>>day>>month>>year;
     this->end_date.set_date(day,month,year);
 }
-
 void Request::show_req(){
     cout <<"[ From: " << this->req_from << " || "
         <<"Occupier rating: " << this->occ_rate <<" || "
@@ -70,4 +68,4 @@ void Request::show_req(){
             cout << "Not valid ]" << std::endl;
             break;
         }
-}
+}   
