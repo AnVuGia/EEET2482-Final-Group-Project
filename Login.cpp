@@ -179,3 +179,12 @@ void find_suitable_house(Member *currentUser,Global *program){
             }
         } while (token);
 }
+void rate_house(Member *chosenUser){
+    double score;
+    string comment;
+    cout << "\nEnter score: ";
+    cin >> score;
+    cout << "\nAdd a comment: ";
+    cin >> comment;
+    chosenUser->set_house_rating(Rating(score,comment));
+}

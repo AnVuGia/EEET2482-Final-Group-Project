@@ -7,7 +7,8 @@ class Rating{
     double score;
     string comment;
     public:
-    void setRating(int score, string comment);
+    Rating();
+    Rating(int score, string comment);
     double getScore();
     string getComment();
 };

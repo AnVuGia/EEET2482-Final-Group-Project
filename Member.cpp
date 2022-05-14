@@ -102,3 +102,7 @@ void Member::set_request(Request req){
 void Member::set_rating(Rating rate){
     this->ratings.push_back(rate);
 }
+
+void Member::set_house_rating(Rating rate){
+    this->own_house.set_rating(rate);
+};

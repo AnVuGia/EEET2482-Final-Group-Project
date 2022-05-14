@@ -50,5 +50,6 @@ class Member {
     void set_credits(int creds);
     void set_request(Request req);
     void set_rating(Rating rate);
+    void set_house_rating(Rating rate);
 };
 #endif

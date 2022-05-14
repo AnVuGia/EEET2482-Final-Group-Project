@@ -83,6 +83,13 @@ void House::set_info(double houserate,double min_occ_rate,
         this->end_date.set_date(day, month, year);
         
 }
+void House::show_ratings(){
+    int i =1;
+    for(Rating r: this->ratings){
+        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment();
+        i++; 
+    }
+};
 //getter
 string House::get_location(){
     return this->location;
@@ -125,4 +132,7 @@ void House::set_location(string location){
 }
 void House::set_descrition(string des){
     this->description = des;
+}
+void House::set_rating(Rating rate){
+    this->ratings.push_back(rate);
 }

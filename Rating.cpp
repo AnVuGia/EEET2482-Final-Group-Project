@@ -1,7 +1,7 @@
 #include "Rating.h"
 #include <cstring>
-
-void Rating::setRating(int score, string comment){
+Rating::Rating(){};
+Rating::Rating(int score, string comment){
     this->score = score;
     this->comment = comment;
 };

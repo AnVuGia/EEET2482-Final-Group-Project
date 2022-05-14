@@ -1,8 +1,11 @@
 #include <iostream>
 #include "Date.h"
+#include "Rating.h"
+#include <vector>
 #ifndef HOUSE_H
 #define HOUSE_H
 using std::string;
+using std::vector;
 class House{
     protected:
     double house_rating_score = 0;
@@ -12,12 +15,13 @@ class House{
     bool available = false;
     Date start_date;
     Date end_date;
+    vector<Rating> ratings;
     public:
     House();
     House(string location, string description);
     void show_info();
-    
     void set_available();
+    void show_ratings();
     //getter method
     string get_location();
     string get_description();
@@ -33,5 +37,6 @@ class House{
     string loca, string des, bool avail,string startdate,string enddate);
     void set_location(string location);
     void set_descrition(string des);
+    void set_rating(Rating rate);
 };
 #endif
