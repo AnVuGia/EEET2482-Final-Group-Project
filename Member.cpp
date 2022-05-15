@@ -1,4 +1,4 @@
-#include "Member.h"
+#include "House.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -86,6 +86,10 @@ int Member::get_start_value(){
 }
 int Member::get_end_value(){
     return this->own_house.get_end_day_rata();
+}
+
+vector<Rating> Member::get_ratings(){
+    return this->ratings;
 }
 //
 
