@@ -23,10 +23,24 @@ void Member::set_info(int creditPoints, string userName, string fullName,
         this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
         this->own_rating_score = own_rating;
     }
-
+void Member::show_requests(){
+    cout << "\nCurrent requests: " << std::endl;
+    int i = 1;
+    for(Request r: this->requests){
+        cout << i << ". ";
+        r.show_req();
+        i++;
+    }
+}
+void Member::show_house_ratings(){
+    this->own_house.show_ratings();
+}
 //getter method
 string Member::get_pwd(){
     return this->pwd;
+}
+House Member::get_own_house(){
+    return this->own_house;
 }
 string Member::get_fullName(){
     return this->fullName;
@@ -89,4 +103,39 @@ void Member::set_credits(int creds){
 
 void Member::set_request(Request req){
     this->requests.push_back(req);
+}
+
+void Member::set_rating(Rating rate){
+    this->ratings.push_back(rate);
+}
+
+void Member::set_house_rating(Rating rate){
+    this->own_house.set_rating(rate);
+};
+
+void Member::accept_request() {
+    show_requests();
+    int accept, i = 1;
+    cout << "Accepted request: ";
+    cin >> accept;
+    Request temp = this->requests[accept];
+    temp.set_status(2);
+    this->requests.clear();
+    this->requests.push_back(temp);
+}
+
+void Member::rate_occupiers(){
+    int i = 1;
+    string comment;
+    double score;
+    for(Member occupier: this->own_house.get_occupiers()){
+        cout << i << ". " << occupier.get_fullName() << std::endl;
+        cout << "Comment: ";
+        cin >> comment;
+        cout << "Score: ";
+        cin >> score;
+        Rating rating = Rating(score, comment);
+        occupier.get_ratings().push_back(rating);
+        i++;
+    }
 }

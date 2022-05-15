@@ -179,3 +179,24 @@ void find_suitable_house(Member *currentUser,Global *program){
             }
         } while (token);
 }
+
+void showHouse(Global *program)
+{
+    for(size_t i = 0; i < program->users.size(); i++){
+        if (program->users[i].get_own_house().get_availalbe())
+        {
+            program->users[i].get_own_house().show_short_info();
+        }
+    }
+}
+
+void rate_house(Member *chosenUser){
+    double score;
+    string comment;
+    cout << "\nEnter score: ";
+    cin >> score;
+    cout << "Add a comment: ";
+    std::getline(cin >> std::ws, comment);
+    chosenUser->set_house_rating(Rating(score,comment));
+}
+
