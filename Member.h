@@ -48,10 +48,14 @@ class Member {
     vector <Request> get_req_list();
     int get_start_value();
     int get_end_value();
+    vector<Rating> get_ratings();
     //setter
     void set_credits(int creds);
     void set_request(Request req);
     void set_rating(Rating rate);
     void set_house_rating(Rating rate);
+    void accept_request();
+
+    void rate_occupiers();
 };
 #endif

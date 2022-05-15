@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Date.h"
 #include "Rating.h"
+#include "Member.h"
 #include <vector>
 #ifndef HOUSE_H
 #define HOUSE_H
@@ -17,6 +18,7 @@ class House{
     Date start_date;
     Date end_date;
     vector<Rating> ratings;
+    vector<Member> occupiers;
     public:
     House();
     House(string location, string description);
@@ -34,11 +36,13 @@ class House{
     string get_enddate();
     int get_start_day_rata();
     int get_end_day_rata();
+    vector<Member> get_occupiers();
     //setter method
     void set_info(double houserate,double min_occ_rate, 
     string loca, string des, bool avail,string startdate,string enddate);
     void set_location(string location);
     void set_descrition(string des);
     void set_rating(Rating rate);
+    void add_occupier(Member occupier);
 };
 #endif

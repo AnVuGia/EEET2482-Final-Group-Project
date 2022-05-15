@@ -134,6 +134,9 @@ int House::get_start_day_rata(){
 int House::get_end_day_rata(){
     return this->end_date.rata_die_days();
 }
+vector<Member> House::get_occupiers(){
+    return this->occupiers;
+}
 //setter
 void House::set_location(string location){
     this->location = location;
@@ -143,4 +146,7 @@ void House::set_descrition(string des){
 }
 void House::set_rating(Rating rate){
     this->ratings.push_back(rate);
+}
+void House::add_occupier(Member occupier){
+    this->occupiers.push_back(occupier);
 }

@@ -112,3 +112,30 @@ void Member::set_rating(Rating rate){
 void Member::set_house_rating(Rating rate){
     this->own_house.set_rating(rate);
 };
+
+void Member::accept_request() {
+    show_requests();
+    int accept, i = 1;
+    cout << "Accepted request: ";
+    cin >> accept;
+    Request temp = this->requests[accept];
+    temp.set_status(2);
+    this->requests.clear();
+    this->requests.push_back(temp);
+}
+
+void Member::rate_occupiers(){
+    int i = 1;
+    string comment;
+    double score;
+    for(Member occupier: this->own_house.get_occupiers()){
+        cout << i << ". " << occupier.get_fullName() << std::endl;
+        cout << "Comment: ";
+        cin >> comment;
+        cout << "Score: ";
+        cin >> score;
+        Rating rating = Rating(score, comment);
+        occupier.get_ratings().push_back(rating);
+        i++;
+    }
+}
