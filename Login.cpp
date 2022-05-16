@@ -198,5 +198,24 @@ void rate_house(Member *chosenUser){
     cout << "Add a comment: ";
     std::getline(cin >> std::ws, comment);
     chosenUser->set_house_rating(Rating(score,comment));
-}
+};
+
+void accept_request(Member* currentMember, Global *program) {
+    currentMember->show_requests();
+    int accept, i = 1;
+    cout << "Accepted request: ";
+    cin >> accept;
+    Request temp = currentMember->get_req_list()[accept-1];
+    temp.set_status(2);
+    currentMember->get_req_list().clear();
+    currentMember->get_req_list().push_back(temp);
+    for(size_t i = 0; i < program->users.size(); i++){
+        if(temp.get_req_from() == program->users[i].get_userName()){
+            currentMember->set_occupier(program->users[i]);
+            cout << currentMember->get_occupier_name(); //for testing
+            program->users[i].set_occupying(*currentMember);
+            cout << program->users[i].get_occupying_name(); //for testing
+        }
+    }
+};
 

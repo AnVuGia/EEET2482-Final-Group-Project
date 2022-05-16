@@ -1,4 +1,4 @@
-#include "House.h"
+#include "Member.h"
 #include <iostream>
 #include <vector>
 #include <sstream>
@@ -117,29 +117,44 @@ void Member::set_house_rating(Rating rate){
     this->own_house.set_rating(rate);
 };
 
-void Member::accept_request() {
-    show_requests();
-    int accept, i = 1;
-    cout << "Accepted request: ";
-    cin >> accept;
-    Request temp = this->requests[accept];
-    temp.set_status(2);
-    this->requests.clear();
-    this->requests.push_back(temp);
-}
+void Member::set_occupier(Member mem){
+    this->occupier = &mem;
+};
+void Member::set_occupying(Member mem){
+    this->occupying = &mem;
+};
 
-void Member::rate_occupiers(){
-    int i = 1;
-    string comment;
-    double score;
-    for(Member occupier: this->own_house.get_occupiers()){
-        cout << i << ". " << occupier.get_fullName() << std::endl;
-        cout << "Comment: ";
-        cin >> comment;
-        cout << "Score: ";
-        cin >> score;
-        Rating rating = Rating(score, comment);
-        occupier.get_ratings().push_back(rating);
-        i++;
-    }
-}
+string Member::get_occupier_name(){
+    return this->occupier->get_fullName();
+};
+string Member::get_occupying_name(){
+    return this->occupying->get_fullName();
+};
+
+ void Member::return_house(){
+     if (this->occupier != nullptr)
+     {
+         string comment;
+         int score;
+         cout << "Occupier rate house: " << endl;
+         cout << "Comment: ";
+         cin >> comment;
+         cout << "Score: ";
+         cin >> score;
+         Rating rate = Rating(score, comment);
+         this->set_house_rating(rate);
+         
+         cout << "Owner rate occupier: " << endl;
+         cout << "Comment: ";
+         cin >> comment;
+         cout << "Score: ";
+         cin >> score;
+         rate = Rating(score, comment);
+         this->occupier->set_rating(rate);
+         
+         this->occupier = nullptr;
+         this->requests.clear();
+
+     }
+ }
+
