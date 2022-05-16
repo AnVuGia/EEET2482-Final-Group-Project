@@ -122,7 +122,7 @@ void Member::accept_request() {
     int accept, i = 1;
     cout << "Accepted request: ";
     cin >> accept;
-    Request temp = this->requests[accept];
+    Request temp = this->requests[accept - 1];
     temp.set_status(2);
     this->requests.clear();
     this->requests.push_back(temp);

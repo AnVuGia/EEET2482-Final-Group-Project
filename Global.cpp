@@ -76,7 +76,7 @@ void Global::end(){
         <<user.get_house_startdate()<<","
         <<user.get_house_enddate()<<",";
         for(auto req: user.get_req_list()){
-            if(user.get_req_list().size() > 0 && req.get_status() == 1){
+            if(user.get_req_list().size() > 0 && req.get_status() != 0){
                 myfile << req.get_status() <<","
                     << req.get_req_from() <<","
                     <<req.get_occ_rate()<<","

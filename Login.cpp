@@ -48,7 +48,13 @@ void login(Global *program){
         cin >> pwd;
         if(pwd == program->admin_pwd){
             cout << "Welcome admin!\n";
-            cout <<"User info: ";
+            cout <<"Users info: ";
+            for(auto user: program->users){
+                user.show_info();
+            }
+        } else{
+            cout << "Wrong pass";
+            return;
         }
         for(size_t i = 0; i < program->users.size(); i++){
             program->users[i].show_info();
