@@ -20,6 +20,12 @@ double Request::get_occ_rate(){
 int Request::get_status(){
     return this->status;
 }
+Date Request::get_start(){
+    return this->start_date;
+};
+Date Request::get_end(){
+    return this->end_date;
+};
 //setter
 void Request::set_req_from(string username){
     this->req_from = username;
