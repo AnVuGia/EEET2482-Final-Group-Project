@@ -43,11 +43,11 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
+    accept_request(program.CurrentUser, &program);
     // rate_house(program.CurrentUser);
     // program.CurrentUser->show_house_ratings();
     // find_suitable_house(program.CurrentUser, &program);
-    program.CurrentUser->show_requests();
-    program.CurrentUser->accept_request();
-    program.end();
+    // program.CurrentUser->show_requests();
+    // program.end();
     return 0;
 }
