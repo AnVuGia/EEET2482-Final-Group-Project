@@ -9,18 +9,20 @@ using std::vector;
 void Member::show_info(){
     cout<< "[ User name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
-        <<"Credit: "<< this->creditPoints <<"\nHouse: ";
+        <<"Credit: "<< this->creditPoints << "\n"
+        << "Rating: " << this->own_rating_score
+        <<"\nHouse: ";
         this->own_house.show_info();
 }
-void Member::set_info(int creditPoints, string userName, string fullName, 
-    string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate
-    ,string loca,string des,bool avail,string startdate, string enddate){
+void Member::set_info(double creditPoints, string userName, string fullName, 
+    string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate, double conspoint,
+    string loca,string des,bool avail,string startdate, string enddate){
         this->creditPoints = creditPoints;
         this->userName = userName;
         this->fullName = fullName;
         this->phoneNumber = phoneNumber;
         this->pwd = pwd;
-        this->own_house.set_info(houserate,min_ocrate,loca,des,avail,startdate,enddate);
+        this->own_house.set_info(houserate,min_ocrate,conspoint,loca,des,avail,startdate,enddate);
         this->own_rating_score = own_rating;
     }
 void Member::show_requests(){
@@ -32,6 +34,25 @@ void Member::show_requests(){
         i++;
     }
 }
+void Member::show_user_ratings(){
+    int i =1;
+    cout << "User's ratings: " << std::endl;
+    for (Rating r: this->ratings) {
+        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment() << std::endl;
+        i++; 
+    }
+}
+double Member::rating_score(vector<Rating> ratings){
+        double num, sum, rating;
+        if(ratings.size()>0){
+            for(Rating r: ratings){
+                sum += r.getScore();
+                num++; 
+            }
+            rating = sum/num;
+        }else{return rating;}
+        return rating;
+        }
 void Member::show_house_ratings(){
     this->own_house.show_ratings();
 }
@@ -72,7 +93,7 @@ string Member::get_house_startdate(){
 string Member::get_house_enddate(){
     return this->own_house.get_enddate();
 }
-int Member::get_creds(){
+double Member::get_creds(){
     return this->creditPoints;
 }
 void Member::get_full_house_info(){
@@ -81,6 +102,9 @@ void Member::get_full_house_info(){
 double Member::get_own_rating_score(){
     return this->own_rating_score;
 }
+double Member::get_house_cons_point(){
+    return this->own_house.get_conspoint();
+};
 int Member::get_start_value(){
     return this->own_house.get_start_day_rata();
 }
@@ -100,22 +124,20 @@ void Member::list_house(){
     this->own_house.set_available();
 }
 //setter
+void Member::set_own_rating_score(double score){
+    this->own_rating_score = score;
+}
+void Member::set_house_rating_score(double score){
+    this->own_house.set_house_rating_score(score);
+};
 
-void Member::set_credits(int creds){
+void Member::set_credits(double creds){
     this->creditPoints = creds;
 }
 
 void Member::set_request(Request req){
     this->requests.push_back(req);
 }
-
-void Member::set_rating(Rating rate){
-    this->ratings.push_back(rate);
-}
-
-void Member::set_house_rating(Rating rate){
-    this->own_house.set_rating(rate);
-};
 
 void Member::set_occupier(Member mem){
     this->occupier = &mem;
@@ -131,19 +153,17 @@ string Member::get_occupying_name(){
     return this->occupying->get_fullName();
 };
 
-// void Member::rate_occupiers(){
-//     int i = 1;
-//     string comment;
-//     double score;
-//     for(Member occupier: this->own_house.get_occupiers()){
-//         cout << i << ". " << occupier.get_fullName() << std::endl;
-//         cout << "Comment: ";
-//         cin >> comment;
-//         cout << "Score: ";
-//         cin >> score;
-//         Rating rating = Rating(score, comment);
-//         occupier.get_ratings().push_back(rating);
-//         i++;
-//     }
-// }
+void Member::add_rating(Rating rate){
+    this->ratings.push_back(rate);
+}
+void Member::add_house_rating(Rating rate){
+    this->own_house.add_rating(rate);
+};
+void Member::minus_credit(double ammount){
+    this->creditPoints -= ammount;
+};
+void Member::add_credit(double ammount){
+    this->creditPoints += ammount;
+};
+
 

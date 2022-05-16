@@ -197,7 +197,19 @@ void rate_house(Member *chosenUser){
     cin >> score;
     cout << "Add a comment: ";
     std::getline(cin >> std::ws, comment);
-    chosenUser->set_house_rating(Rating(score,comment));
+    chosenUser->add_house_rating(Rating(score, comment));
+    chosenUser->set_house_rating_score(chosenUser->rating_score(chosenUser->get_own_house().get_ratings()));
+};
+
+void rate_occupier(Member *chosenUser){
+    double score;
+    string comment;
+    cout << "\nEnter score: ";
+    cin >> score;
+    cout << "Add a comment: ";
+    std::getline(cin >> std::ws, comment);
+    chosenUser->add_rating(Rating(score, comment));
+    chosenUser->set_own_rating_score(chosenUser->rating_score(chosenUser->get_ratings()));
 };
 
 void accept_request(Member* currentMember, Global *program) {
@@ -209,12 +221,16 @@ void accept_request(Member* currentMember, Global *program) {
     temp.set_status(2);
     currentMember->get_req_list().clear();
     currentMember->get_req_list().push_back(temp);
+    double days = temp.get_end().rata_die_days() - temp.get_start().rata_die_days() + 1;
+    double fee = currentMember->get_house_cons_point() * days;
     for(size_t i = 0; i < program->users.size(); i++){
         if(temp.get_req_from() == program->users[i].get_userName()){
             currentMember->set_occupier(program->users[i]);
-            cout << currentMember->get_occupier_name(); //for testing
+            currentMember->add_credit(fee);
             program->users[i].set_occupying(*currentMember);
-            cout << program->users[i].get_occupying_name(); //for testing
+            program->users[i].minus_credit(fee);
+            cout << currentMember->get_occupier_name() << " New credit: " << program->users[i].get_creds() << " Days: " << days << " Fees: $" << fee << std::endl; //for testing
+            cout << program->users[i].get_occupying_name() << " New credit: " << currentMember->get_creds() << std::endl; //for testing
         }
     }
 };

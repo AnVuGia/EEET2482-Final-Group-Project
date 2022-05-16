@@ -21,7 +21,6 @@ void House::set_available(){
     if(inp == "n"){
         return;
     } else {
-      
         stringstream date_start;
         stringstream date_end;
         vector<int> start;
@@ -62,9 +61,10 @@ void House::set_available(){
 
 void House::show_info(){
     cout << "\n[ Location: "<< this->location 
-        << "\nDescription: "<< this->description;
+        << "\nDescription: "<< this->description
+        << "\n Rating: " << this->house_rating_score;
     if(available){
-        cout << " Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
+        cout << " || Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
     } else{
         cout <<" ]";
     }
@@ -72,14 +72,15 @@ void House::show_info(){
 void House::show_short_info(){
     cout << "\n[ Location: " << this->location << std::endl;
     cout << "Description: " << this->description << std::endl;
-    cout << "Consumming point: " << this->consumming_point << std::endl;
+    cout << "Consumming point: " << this->consuming_point << std::endl;
     cout << "Minimum required occupier rating: " << this->min_occupier_rating << "]" << std::endl;
 }
 
-void House::set_info(double houserate,double min_occ_rate, 
+void House::set_info(double houserate,double min_occ_rate,double consuming_point, 
     string loca, string des, bool avail,string startdate,string enddate){
        this->house_rating_score = houserate;
        this->min_occupier_rating = min_occ_rate;
+       this->consuming_point = consuming_point;
        this->location = loca;
        this->description = des;
        this->available = avail;
@@ -113,6 +114,9 @@ double House::get_houserate(){
 double House::get_minoccrate(){
     return this->min_occupier_rating;
 }
+double House::get_conspoint(){
+    return this->consuming_point;
+};
 bool House::get_availalbe(){
     return this->available;
 }
@@ -136,9 +140,10 @@ int House::get_start_day_rata(){
 int House::get_end_day_rata(){
     return this->end_date.rata_die_days();
 }
-// vector<Member> House::get_occupiers(){
-//     return this->occupiers;
-// }
+vector<Rating> House::get_ratings(){
+    return this->ratings;
+};
+
 //setter
 void House::set_location(string location){
     this->location = location;
@@ -146,9 +151,10 @@ void House::set_location(string location){
 void House::set_descrition(string des){
     this->description = des;
 }
-void House::set_rating(Rating rate){
+void House::set_house_rating_score(double score){
+    this->house_rating_score = score;
+};
+
+void House::add_rating(Rating rate){
     this->ratings.push_back(rate);
 }
-// void House::add_occupier(Member occupier){
-//     this->occupiers.push_back(occupier);
-// }

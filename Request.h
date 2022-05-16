@@ -17,13 +17,16 @@ class Request{
     string get_end_date();
     double get_occ_rate();
     int get_status();
+    Date get_start();
+    Date get_end();
+
     //setter
     void set_req_from(string username);
     void set_start_date(int day, int month, int year);
     void set_end_date(int day, int month, int year);
     void set_occ_rate(double rating);
     void set_status(int stat);
-    //
+    
     void show_req();
     void set_req(int status, string req_from, double occ_rate, string start_date, string end_date);
 };
