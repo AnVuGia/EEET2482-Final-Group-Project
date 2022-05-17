@@ -34,7 +34,7 @@ void Global::inputUserData(Member &user, string line){
     i+=1;
     //input user rating
     while (outp[i] !="EOURATE")
-    {   cout << "in user rate";
+    {   cout << "in user rate ";
        Rating user_rate(std::stod(outp[i]), outp[i+1]);
        user.add_rating(user_rate);
        i+=2;
@@ -42,6 +42,7 @@ void Global::inputUserData(Member &user, string line){
     i+=1;
     //input peding/accepted request
     while(outp[i] != "END"){
+        cout << "in request ";
         Request temp;
         temp.set_req(std::stoi(outp[i]),outp[i+1],std::stod(outp[i+2]),outp[i+3],outp[i+4]);
         user.set_request(temp);
@@ -50,7 +51,7 @@ void Global::inputUserData(Member &user, string line){
 }
 void Global::inputData(){
     std::fstream myfile;
-    myfile.open("data.txt", std::ios::in);
+    myfile.open("output.txt", std::ios::in);
     if(!myfile){
         cout << "Cannot open file!";
     }
@@ -58,6 +59,7 @@ void Global::inputData(){
     while (!myfile.eof())
     {   
         std::getline(myfile, inp);
+        if(inp.length() == 0) break;
         Member temp;
         inputUserData(temp, inp);
         this->users.push_back(temp);
@@ -72,7 +74,6 @@ int Global::choice(){
 }
 
 void Global::end(){
-    cout << "In end";
     std::fstream myfile;
     myfile.open("output.txt", std::ios::out);
     if(!myfile){
@@ -80,7 +81,6 @@ void Global::end(){
     }
     string outp;
     for(auto user: this->users){
-
         //output user
         myfile<< user.get_creds()<<","
         <<user.get_userName()<<","
@@ -95,13 +95,22 @@ void Global::end(){
         <<user.get_house_avail()<<","
         <<user.get_house_cons_point()<<","
         <<user.get_house_startdate()<<","
-        <<user.get_house_enddate()<<","
-        <<user.get_occupier_name()<<","
-        <<user.get_occupying_name()<<",";
+        <<user.get_house_enddate()<<",";
+        //
+        // <<user.get_occupying_name()<<",";
+        if(user.get_occupier() != NULL){
+            myfile << user.get_occupier()->get_userName()<<",";
+        } else {
+            myfile << "0" <<",";
+        }
+        if(user.get_occupying() != NULL){
+            myfile << user.get_occupying()->get_userName()<<",";
+        } else {
+            myfile << "0" <<",";
+        }
 
         //output house rating
         if(user.get_own_house().get_ratings().size() > 0){
-            
             for (auto rate : user.get_own_house().get_ratings()){
                 myfile << rate.getScore() <<","
                 <<rate.getComment() << ",";

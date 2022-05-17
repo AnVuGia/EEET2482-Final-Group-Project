@@ -66,13 +66,20 @@ void login(Global *program){
     }
 };
 void setup(Global *program){
-    for(auto user: program->users){
-        for(auto user_to: program->users){
-            if(user.get_occupier_name() == user_to.get_userName()){
-                user.set_occupier(&user_to);
+    cout << "in setup";
+    int size = program->users.size();
+    for(int i = 0; i < size; i++){
+        cout << " searching " << i <<" ";
+        cout << program->users[i].get_occupier_name();
+        cout << program->users[i].get_occupying_name();
+        for(int j = 0; j < size; j++){ 
+            if(program->users[i].get_occupier_name() == program->users[j].get_userName()){
+                program->users[i].set_occupier(&program->users[j]);
+                cout << "in set occupier";
             }
-            if(user.get_occupying_name() == user_to.get_userName()){
-                user.set_occupying(&user_to);
+            if(program->users[i].get_occupying_name() == program->users[j].get_userName()){
+                program->users[i].set_occupying(&program->users[j]);
+                cout << "in set occupying";
             }
         }
     }
@@ -233,11 +240,8 @@ void rate_occupier(Member *chosenUser){
         cout << "Add a comment: ";
         std::getline(cin >> std::ws, comment);
         Rating rate(score, comment);
-        cout <<"Made b4 add ";
         chosenUser->add_rating(rate);
-         cout <<"Made b4 set ";
         chosenUser->set_own_rating_score(chosenUser->rating_score(chosenUser->get_ratings()));
-        cout <<"Made it here";
     }
 };
 

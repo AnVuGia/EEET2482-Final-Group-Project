@@ -154,18 +154,12 @@ void Member::set_occupying(Member *mem){
 };
 
 string Member::get_occupier_name(){
-    if(this->occupier == NULL){
-        return "0";
-    } else{
-        return this->occupier->get_userName();
-    }
+   
+    return this->occupier_name;
+
 };
 string Member::get_occupying_name(){
-    if(this->occupying == NULL){
-        return "0";
-    } else{
-        return this->occupying->get_userName();
-    };
+        return this->occupying_name;
 }
     
 
