@@ -16,7 +16,7 @@ House::House(string location, string description){
 }
 void House::set_available(){
     string inp;
-    cout << "\nDo you want to list your house (y/n: ";
+    cout << "\nDo you want to list your house (y/n): ";
     cin >> inp;
     if(inp == "n"){
         return;
@@ -38,7 +38,6 @@ void House::set_available(){
             start.push_back(num);
         }
         this->start_date.set_date(start[0], start[1], start[2]);
-        cout << start_date.get_date();
         //set end date
         cout << "\nEnter end date: (dd/mm/yyyy): ";
         cin >> inp;
@@ -50,7 +49,6 @@ void House::set_available(){
             end.push_back(num);
         }
         this->end_date.set_date(end[0], end[1], end[2]); 
-        cout << end_date.get_date();
         cout << "\nMin occupier_rating: ";   
         double rating;
         cin >> rating;
@@ -62,7 +60,8 @@ void House::set_available(){
 void House::show_info(){
     cout << "\n[ Location: "<< this->location 
         << "\nDescription: "<< this->description
-        << "\n Rating: " << this->house_rating_score;
+        << "\n Rating: " << this->house_rating_score <<"\n";
+        this->show_ratings();
     if(available){
         cout << " || Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
     } else{
@@ -96,10 +95,14 @@ void House::set_info(double houserate,double min_occ_rate,double consuming_point
 void House::show_ratings(){
     int i =1;
     cout << "House ratings: " << std::endl;
-    for (Rating r: this->ratings) {
+    if(this->ratings.size() == 0){
+        cout << "No rating for this place yet";
+    } else{
+        for (Rating r: this->ratings) {
         cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment() << std::endl;
         i++; 
-    }
+        }
+    } 
 };
 //getter
 string House::get_location(){

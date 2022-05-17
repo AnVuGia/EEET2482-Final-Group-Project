@@ -43,7 +43,8 @@ int main(){
     program.inputData();
     setup(&program);
     print_header();
-    user_choice();
+    program.user_register();
+    // user_choice();
     
     accept_request(program.CurrentUser, &program); //test request accept & fees exchange between users
     rate_occupier(program.CurrentUser->get_occupier());   //test rate occupier
