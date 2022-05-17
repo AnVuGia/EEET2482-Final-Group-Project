@@ -211,23 +211,30 @@ void showHouse(Global *program)
 void rate_house(Member *chosenUser){
     double score;
     string comment;
-    cout << "\nEnter score: ";
-    cin >> score;
-    cout << "Add a comment: ";
-    std::getline(cin >> std::ws, comment);
-    chosenUser->add_house_rating(Rating(score, comment));
-    chosenUser->set_house_rating_score(chosenUser->rating_score(chosenUser->get_own_house().get_ratings()));
-};
-
+    if(chosenUser == NULL){
+        cout << "\nNo houses to rate!";
+    }else{
+        cout<<"\nRate your previously occupied house: "<< chosenUser->get_fullName() << "'s" << "\nEnter score: ";
+        cin >> score;
+        cout << "Add a comment: ";
+        std::getline(cin >> std::ws, comment);
+        chosenUser->add_house_rating(Rating(score, comment));
+        chosenUser->set_house_rating_score(chosenUser->rating_score(chosenUser->get_own_house().get_ratings()));
+    }
+}
 void rate_occupier(Member *chosenUser){
     double score;
     string comment;
-    cout << "\nEnter score: ";
-    cin >> score;
-    cout << "Add a comment: ";
-    std::getline(cin >> std::ws, comment);
-    chosenUser->add_rating(Rating(score, comment));
-    chosenUser->set_own_rating_score(chosenUser->rating_score(chosenUser->get_ratings()));
+    if(chosenUser == NULL){
+        cout << "\nNo occupier to rate!";
+    }else{
+        cout <<"\nRate your occupier: "<< chosenUser->get_fullName() << "\nEnter score: ";
+        cin >> score;
+        cout << "Add a comment: ";
+        std::getline(cin >> std::ws, comment);
+        chosenUser->add_rating(Rating(score, comment));
+        chosenUser->set_own_rating_score(chosenUser->rating_score(chosenUser->get_ratings()));
+    }
 };
 
 void accept_request(Member* currentMember, Global *program) {

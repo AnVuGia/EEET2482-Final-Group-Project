@@ -117,7 +117,12 @@ int Member::get_end_value(){
 vector<Rating> Member::get_ratings(){
     return this->ratings;
 }
-//
+Member* Member::get_occupier(){
+    return this->occupier;
+};
+Member* Member::get_occupying(){
+    return this->occupying;
+};
 
 vector <Request>Member:: get_req_list(){
     return this->requests;

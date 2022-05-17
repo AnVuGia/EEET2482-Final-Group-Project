@@ -57,6 +57,8 @@ class Member {
         int get_start_value();
         int get_end_value();
         vector<Rating> get_ratings();
+        Member* get_occupier();
+        Member* get_occupying();
         string get_occupier_name();
         string get_occupying_name();
 
