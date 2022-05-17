@@ -43,11 +43,18 @@ int main(){
     program.inputData();
     print_header();
     user_choice();
-    accept_request(program.CurrentUser, &program);
-    // rate_house(program.CurrentUser);
+    
+    // accept_request(program.CurrentUser, &program); //test request accept & fees exchange between users
+    // rate_occupier(program.CurrentUser);   //test rate occupier
+    // rate_occupier(program.CurrentUser);  //test avg rating
+    // program.CurrentUser->show_user_ratings();
+    // rate_house(program.CurrentUser); //test rate house
+    // rate_house(program.CurrentUser); //test avg rating
+    // // program.CurrentUser->show_info();
     // program.CurrentUser->show_house_ratings();
     // find_suitable_house(program.CurrentUser, &program);
     // program.CurrentUser->show_requests();
     // program.end();
+
     return 0;
 }
