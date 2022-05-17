@@ -67,8 +67,8 @@ class Member {
         void set_house_rating_score(double score);
         void set_credits(double creds);
         void set_request(Request req);
-        void set_occupier(Member mem);
-        void set_occupying(Member mem);
+        void set_occupier(Member *mem);
+        void set_occupying(Member *mem);
 
         void add_rating(Rating rate);
         void add_house_rating(Rating rate);

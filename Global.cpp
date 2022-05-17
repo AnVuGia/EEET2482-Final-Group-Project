@@ -72,6 +72,7 @@ int Global::choice(){
 }
 
 void Global::end(){
+    cout << "In end";
     std::fstream myfile;
     myfile.open("output.txt", std::ios::out);
     if(!myfile){
@@ -79,6 +80,7 @@ void Global::end(){
     }
     string outp;
     for(auto user: this->users){
+
         //output user
         myfile<< user.get_creds()<<","
         <<user.get_userName()<<","
@@ -96,8 +98,10 @@ void Global::end(){
         <<user.get_house_enddate()<<","
         <<user.get_occupier_name()<<","
         <<user.get_occupying_name()<<",";
+
         //output house rating
         if(user.get_own_house().get_ratings().size() > 0){
+            
             for (auto rate : user.get_own_house().get_ratings()){
                 myfile << rate.getScore() <<","
                 <<rate.getComment() << ",";
@@ -105,6 +109,7 @@ void Global::end(){
         }
         myfile << "EOHRATE" <<",";
         //output user rating
+        
         if(user.get_ratings().size() > 0){
             for (auto user_rate : user.get_ratings()){
                 myfile << user_rate.getScore() <<","

@@ -69,10 +69,10 @@ void setup(Global *program){
     for(auto user: program->users){
         for(auto user_to: program->users){
             if(user.get_occupier_name() == user_to.get_userName()){
-                user.set_occupier(user_to);
+                user.set_occupier(&user_to);
             }
             if(user.get_occupying_name() == user_to.get_userName()){
-                user.set_occupying(user_to);
+                user.set_occupying(&user_to);
             }
         }
     }
@@ -232,12 +232,20 @@ void rate_occupier(Member *chosenUser){
         cin >> score;
         cout << "Add a comment: ";
         std::getline(cin >> std::ws, comment);
-        chosenUser->add_rating(Rating(score, comment));
+        Rating rate(score, comment);
+        cout <<"Made b4 add ";
+        chosenUser->add_rating(rate);
+         cout <<"Made b4 set ";
         chosenUser->set_own_rating_score(chosenUser->rating_score(chosenUser->get_ratings()));
+        cout <<"Made it here";
     }
 };
 
 void accept_request(Member* currentMember, Global *program) {
+    if(currentMember->get_req_list().size() == 0){
+        cout << "No request!";
+        return;
+    }
     currentMember->show_requests();
     int accept, i = 1;
     cout << "Accepted request: ";
@@ -250,9 +258,9 @@ void accept_request(Member* currentMember, Global *program) {
     double fee = currentMember->get_house_cons_point() * days;
     for(size_t i = 0; i < program->users.size(); i++){
         if(temp.get_req_from() == program->users[i].get_userName()){
-            currentMember->set_occupier(program->users[i]);
+            currentMember->set_occupier(&program->users[i]);
             currentMember->add_credit(fee);
-            program->users[i].set_occupying(*currentMember);
+            program->users[i].set_occupying(currentMember);
             program->users[i].minus_credit(fee);
             cout << currentMember->get_occupier_name() << " New credit: " << program->users[i].get_creds() << " Days: " << days << " Fees: $" << fee << std::endl; //for testing
             cout << program->users[i].get_occupying_name() << " New credit: " << currentMember->get_creds() << std::endl; //for testing

@@ -45,16 +45,16 @@ void Member::show_user_ratings(){
     }
 }
 double Member::rating_score(vector<Rating> ratings){
-        double num, sum, rating;
-        if(ratings.size()>0){
+    double num, sum, rating;
+        if(ratings.size()>0){   
             for(Rating r: ratings){
                 sum += r.getScore();
                 num++; 
             }
             rating = sum/num;
         }else{return rating;}
-        return rating;
-        }
+    return rating;
+}
 void Member::show_house_ratings(){
     this->own_house.show_ratings();
 }
@@ -146,25 +146,25 @@ void Member::set_request(Request req){
     this->requests.push_back(req);
 }
 
-void Member::set_occupier(Member mem){
-    this->occupier = &mem;
+void Member::set_occupier(Member *mem){
+    this->occupier = mem;
 };
-void Member::set_occupying(Member mem){
-    this->occupying = &mem;
+void Member::set_occupying(Member *mem){
+    this->occupying = mem;
 };
 
 string Member::get_occupier_name(){
     if(this->occupier == NULL){
         return "0";
     } else{
-        return this->occupier->get_fullName();
+        return this->occupier->get_userName();
     }
 };
 string Member::get_occupying_name(){
     if(this->occupying == NULL){
         return "0";
     } else{
-        return this->occupying->get_fullName();
+        return this->occupying->get_userName();
     };
 }
     
