@@ -14,16 +14,18 @@ void Member::show_info(){
         <<"\nHouse: ";
         this->own_house.show_info();
 }
-void Member::set_info(double creditPoints, string userName, string fullName, 
-    string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate, double conspoint,
-    string loca,string des,bool avail,string startdate, string enddate){
+void Member::set_info(double creditPoints, string userName, string fullName, string phoneNumber, string pwd,double own_rating,
+ double houserate, double min_ocrate ,string loca,string des,bool avail,double cons_point,
+ string startdate, string enddate, string occupier_name, string occupying_name){
         this->creditPoints = creditPoints;
         this->userName = userName;
         this->fullName = fullName;
         this->phoneNumber = phoneNumber;
         this->pwd = pwd;
-        this->own_house.set_info(houserate,min_ocrate,conspoint,loca,des,avail,startdate,enddate);
+        this->own_house.set_info(houserate,min_ocrate,cons_point,loca,des,avail,startdate,enddate);
         this->own_rating_score = own_rating;
+        this->occupier_name = occupier_name;
+        this->occupying_name = occupying_name;
     }
 void Member::show_requests(){
     cout << "\nCurrent requests: " << std::endl;
@@ -147,11 +149,20 @@ void Member::set_occupying(Member mem){
 };
 
 string Member::get_occupier_name(){
-    return this->occupier->get_fullName();
+    if(this->occupier == NULL){
+        return "0";
+    } else{
+        return this->occupier->get_fullName();
+    }
 };
 string Member::get_occupying_name(){
-    return this->occupying->get_fullName();
-};
+    if(this->occupying == NULL){
+        return "0";
+    } else{
+        return this->occupying->get_fullName();
+    };
+}
+    
 
 void Member::add_rating(Rating rate){
     this->ratings.push_back(rate);

@@ -65,6 +65,18 @@ void login(Global *program){
         cout << "No user found...";
     }
 };
+void setup(Global *program){
+    for(auto user: program->users){
+        for(auto user_to: program->users){
+            if(user.get_occupier_name() == user_to.get_userName()){
+                user.set_occupier(user_to);
+            }
+            if(user.get_occupying_name() == user_to.get_userName()){
+                user.set_occupying(user_to);
+            }
+        }
+    }
+}
 void send_request(Member *currentUser, Member *chosenUser){
     Request temp_req;   
         string token;

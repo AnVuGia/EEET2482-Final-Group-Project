@@ -21,13 +21,30 @@ void Global::inputUserData(Member &user, string line){
         outp.push_back(token);
     }
     user.set_info(std::stoi(outp[0]), outp[1], outp[2], outp[3], outp[4], 
-    std::stod(outp[5]), std::stod(outp[6]),std::stod(outp[7]), 50, outp[8], outp[9], std::stoi(outp[10]), outp[11], outp[12]);
-    int i = 13;
+    std::stod(outp[5]), std::stod(outp[6]),std::stod(outp[7]), outp[8], outp[9], std::stoi(outp[10]),std::stod(outp[11]) 
+    ,outp[12], outp[13], outp[14], outp[15]);
+    int i = 16;
+    // input house rating
+    while(outp[i] !="EOHRATE"){
+        cout << "in house rate";
+        Rating house_rate(std::stod(outp[i]), outp[i+1]);
+        user.add_house_rating(house_rate);
+        i+=2;
+    }
+    i+=1;
+    //input user rating
+    while (outp[i] !="EOURATE")
+    {   cout << "in user rate";
+       Rating user_rate(std::stod(outp[i]), outp[i+1]);
+       user.add_rating(user_rate);
+       i+=2;
+    }
+    i+=1;
+    //input peding/accepted request
     while(outp[i] != "END"){
         Request temp;
         temp.set_req(std::stoi(outp[i]),outp[i+1],std::stod(outp[i+2]),outp[i+3],outp[i+4]);
         user.set_request(temp);
-        // user.set_borrowed_house(outp[i]);
         i+=5;
     }
 }
@@ -62,6 +79,7 @@ void Global::end(){
     }
     string outp;
     for(auto user: this->users){
+        //output user
         myfile<< user.get_creds()<<","
         <<user.get_userName()<<","
         <<user.get_fullName()<<","
@@ -73,8 +91,28 @@ void Global::end(){
         <<user.get_house_loca()<<","
         <<user.get_house_des()<<","
         <<user.get_house_avail()<<","
+        <<user.get_house_cons_point()<<","
         <<user.get_house_startdate()<<","
-        <<user.get_house_enddate()<<",";
+        <<user.get_house_enddate()<<","
+        <<user.get_occupier_name()<<","
+        <<user.get_occupying_name()<<",";
+        //output house rating
+        if(user.get_own_house().get_ratings().size() > 0){
+            for (auto rate : user.get_own_house().get_ratings()){
+                myfile << rate.getScore() <<","
+                <<rate.getComment() << ",";
+            }
+        }
+        myfile << "EOHRATE" <<",";
+        //output user rating
+        if(user.get_ratings().size() > 0){
+            for (auto user_rate : user.get_ratings()){
+                myfile << user_rate.getScore() <<","
+                <<user_rate.getComment() <<",";
+            }
+        }
+        myfile <<"EOURATE";
+        //output requests
         for(auto req: user.get_req_list()){
             if(user.get_req_list().size() > 0 && req.get_status() != 0){
                 myfile << req.get_status() <<","

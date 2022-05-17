@@ -1,8 +1,14 @@
-USER:
+*USER:*
 int creditPoints, string userName, string fullName, string phoneNumber, string pwd,double own_rating,
  double houserate, double min_ocrate ,string loca,string des,bool avail,string startdate, string enddate,
-RATING:
-double score, string comment,EORATE
+*House RATING*:
+double score, string comment,EOHRATE
+*User Rating*:
+double score, string comment, EOURATE
+*REQUEST*:
+int status, string req_from, double occ_rate, string start date, string endate, END
 
-REQUEST:
- int status, string req_from, double occ_rate, string start date, string endate, END
+
+todo: user.get_req_list().size() > 0 && req.get_status() != 0
+fix job listing
+

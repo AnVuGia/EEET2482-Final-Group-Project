@@ -11,7 +11,7 @@ class Rating{
 
     public:
     Rating();
-    Rating(int score, string comment);
+    Rating(double score, string comment);
     double getScore();
     string getComment();
 };

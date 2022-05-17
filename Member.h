@@ -19,15 +19,16 @@ class Member {
         House own_house;
         vector<Rating> ratings;
         vector<Request> requests;
-        Member *occupier; // thằng này đang thuê nhà của super
-        Member *occupying; // super đang thuê nhà của thằng này
+        string occupier_name = "0";
+        string occupying_name = "0";
+        Member *occupier = NULL; // thằng này đang thuê nhà của super
+        Member *occupying =NULL; // super đang thuê nhà của thằng này
     public:
         Member(){};
         //methods
         void show_info();
-        void set_info(double creditPoints, string userName, string fullName, 
-        string phoneNumber, string pwd,double own_rating, double houserate, double min_ocrate, double conspoint
-        ,string loca,string des,bool avail,string startdate, string enddate);
+        void set_info(double creditPoints, string userName, string fullName, string phoneNumber, string pwd,double own_rating,
+        double houserate, double min_ocrate ,string loca,string des,bool avail,double cons_point,string startdate, string enddate, string occupier_name, string occupying_name);
         void list_house();
         void show_requests();
         void show_house_ratings();
