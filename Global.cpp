@@ -111,7 +111,7 @@ void Global::end(){
                 <<user_rate.getComment() <<",";
             }
         }
-        myfile <<"EOURATE";
+        myfile <<"EOURATE" <<",";
         //output requests
         for(auto req: user.get_req_list()){
             if(user.get_req_list().size() > 0 && req.get_status() != 0){
@@ -154,14 +154,15 @@ void Global::user_register(){
     cout <<"\nEnter your password: ";
     cin >> temp;
     ss<<temp<<",";
-    ss<<0<<",";ss<<0<<",";
+    ss<<"0"<<",";ss<<"0"<<","<<"0"<<","; //own rating, occ rate,houserate
     cout << "\nEnter your house location (Hanoi, Saigon, Da Nang): ";
     std::getline(cin >> std::ws, temp);
     ss<<temp<<",";
     cout << "\nEnter your house description : ";
     std::getline(cin >> std:: ws, temp);
     ss<<temp<<","; 
-    ss<<0<<",";ss<<"0 0 0"<<",";ss<<"0 0 0"<<","<<"0";
+    ss<<0<<","<<"0"<<","<<"0 0 0"<<","<<"0 0 0"<<","<<"0"<<","<<"0"<<","
+    <<"EOHRATE"<<","<<"EOURATE"<<","<<"END"; //avail,cons_point,startdate,enddate,occupier,occupiyng,END
     Member user_temp; 
     inputUserData(user_temp, ss.str());
     this->users.push_back(user_temp);

@@ -43,13 +43,14 @@ int main(){
     program.inputData();
     setup(&program);
     print_header();
-    user_choice();
+    program.user_register();
+    // user_choice();
     
     // accept_request(program.CurrentUser, &program); //test request accept & fees exchange between users
     // rate_occupier(program.CurrentUser);   //test rate occupier
     // rate_occupier(program.CurrentUser);  //test avg rating
     // program.CurrentUser->show_user_ratings();
-    rate_house(program.CurrentUser); //test rate house
+    // rate_house(program.CurrentUser); //test rate house
     // rate_house(program.CurrentUser); //test avg rating
     // // program.CurrentUser->show_info();
     // program.CurrentUser->show_house_ratings();
