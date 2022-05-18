@@ -11,6 +11,7 @@ using std::stringstream;
 Global program;
 void guest_route();
 void member_route();
+void admin_route();
 void print_header(){
     cout << "\n\nEEET2482/COSC2082 ASSIGNMENT\n";
     cout << "VACATION HOUSE EXCHANGE APPLICATION";
@@ -23,7 +24,7 @@ void print_header(){
 }
 void layer_1(){
     int choice;
-    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin\n";
+    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
@@ -33,11 +34,40 @@ void layer_1(){
         break;
     case 2:
         login(&program);
-        member_route();
+        if(program.CurrentUser != NULL){
+            member_route();
+        }
         break;
-    
+    case 3:
+        admin_route();
+        break;
     default:
         break;
+    }
+}
+void admin_route(){
+    string user_inp, pwd;
+    cout <<"Enter admin username: ";
+    cin >> user_inp;
+    if(user_inp == program.admin_username){
+        cout << "Enter password: ";
+        cin >> pwd;
+        if(pwd == program.admin_pwd){
+            cout << "In admin: ";
+            for(auto user: program.users){
+                user.show_info();
+            }
+            cout <<"\n0. Exit";
+            cout <<"1. Return\n";
+            int choice = program.choice();
+            if(choice == 1){
+                layer_1();
+            } else{
+                return;
+            }
+        }
+    } else{
+        cout << "Wrong admin username!";
     }
 }
 void guest_route(){
@@ -81,7 +111,7 @@ void guest_route(){
 }
 void member_route(){
     int choice;
-    cout <<"Hi " <<program.CurrentUser->get_userName()<<"\n";
+    cout <<"\n\nHi " <<program.CurrentUser->get_userName()<<"\n";
     cout <<"What do you want to do?: \n";
     cout <<"0. Exit\n";
     cout <<"1. Show info\n";
@@ -153,10 +183,42 @@ void member_route(){
         member_route();
         break;
     case 5:
-        //rate occupying house/occupier
-        rate_house(program.CurrentUser->get_occupying());
-        rate_occupier(program.CurrentUser->get_occupying());
-        member_route();
+        //rate occupying house/occupier , view my rating
+        cout <<"1. Rate your occupier/occupying house\n";
+        cout <<"2. View your rating\n";
+        int choice_2 ;
+        choice_2 = program.choice();
+        switch (choice_2)
+        {
+        case 1:
+            rate_occupier(program.CurrentUser->get_occupier());
+            rate_house(program.CurrentUser->get_occupying());
+            member_route();
+            break;
+        case 2:
+            cout << "User rating: \n";
+            if(program.CurrentUser->get_ratings().size() == 0) {
+                cout << "No rating yet\n";
+                member_route();
+            } else{
+                for(auto rate : program.CurrentUser->get_ratings()){
+                    rate.show_rating();
+                }
+            }
+            cout << "House rating: \n";
+            if(program.CurrentUser->get_own_house().get_ratings().size() == 0) {
+                cout << "No rating yet\n";
+                member_route();
+            } else{
+                for(auto rate : program.CurrentUser->get_own_house().get_ratings()){
+                    rate.show_rating();
+                }
+            }
+            member_route();
+            break;
+        default:
+            break;
+        }
         break;
     default:
         break;

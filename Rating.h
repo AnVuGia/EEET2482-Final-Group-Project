@@ -14,5 +14,6 @@ class Rating{
     Rating(double score, string comment);
     double getScore();
     string getComment();
+    void show_rating();
 };
 #endif

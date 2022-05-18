@@ -14,56 +14,37 @@ using std::stringstream;
 
 
 void login(Global *program){
-    int is_valid = 0;
-    string username;string pwd;
-    cout << "Enter username: ";
-    cin >> username;
-    for(size_t i = 0; i < program->users.size(); i++){
-        if(username == program->users[i].get_userName()){
-            is_valid = 1;
-            program->CurrentUser = &program->users[i];
-        }
-    }
-    if(is_valid == 1){
-        cout << "Enter your password: ";
-        cin >> pwd;
-        if(pwd == program->CurrentUser->get_pwd()){
-
-            cout << "Log in success full!\n";
-            cout <<"This is your menu: \n";
-            cout <<"0. Exit \n";
-            cout <<"1. View infomation \n";
-            int choice = program->choice();
-            if(choice == 1){
-                program->CurrentUser->show_info();
-            } else{
-                cout << "Exit!";
-            }
-            
-        } else{
-            cout << "Wrong password!";
-        }
-    } else if(username == program->admin_username){
-        cout << "Enter your password: ";
-        cin >> pwd;
-        if(pwd == program->admin_pwd){
-            cout << "Welcome admin!\n";
-            cout <<"Users info: ";
-            for(auto user: program->users){
-                user.show_info();
-            }
-        } else{
-            cout << "Wrong pass";
-            return;
-        }
+    int is_valid = 1;
+    do{
+        string username;string pwd;
+        cout << "Enter username: ";
+        cin >> username;
         for(size_t i = 0; i < program->users.size(); i++){
-            program->users[i].show_info();
-            cout << "\n";
+            if(username == program->users[i].get_userName()){
+                is_valid = 0;
+                program->CurrentUser = &program->users[i];
+            }
         }
-    }
-    else{
-        cout << "No user found...";
-    }
+        if(is_valid == 0){
+            cout << "Enter your password: ";
+            cin >> pwd;
+            if(pwd == program->CurrentUser->get_pwd()){
+                cout << "Log in success full!\n";    
+            } else{
+                cout << "Wrong password!";
+            }
+        } 
+        else{
+            cout << "No user found...\n";
+            cout << "Do you want to retry? \n";
+            cout <<"0. No\n";
+            cout <<"1. Yes\n";
+            int choice = program->choice();
+            if(choice == 0){
+                return;
+            }
+        } 
+    } while(is_valid);
 };
 void setup(Global *program){
     int size = program->users.size();
