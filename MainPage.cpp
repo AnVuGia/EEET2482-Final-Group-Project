@@ -29,12 +29,11 @@ void layer_1(){
     switch (choice)
     {
     case 1:
-        guest_route(); // test câu 2
+        guest_route(); 
         break;
-        // program.user_register();
-        // break;
     case 2:
         login(&program);
+        member_route();
         break;
     
     default:
@@ -81,7 +80,87 @@ void guest_route(){
     
 }
 void member_route(){
-    cout <<"in member route";
+    int choice;
+    cout <<"Hi " <<program.CurrentUser->get_userName()<<"\n";
+    cout <<"What do you want to do?: \n";
+    cout <<"0. Exit\n";
+    cout <<"1. Show info\n";
+    cout <<"2. Show request\n";
+    cout <<"3. List your house\n";
+    cout <<"4. Find house (Hanoi, Saigon, Da Nang)\n";
+    cout <<"5. Rate your occupying house/occupier\n";
+    choice = program.choice();
+    switch (choice)
+    {
+    case 0:
+        //go back
+        program.CurrentUser = NULL;
+        layer_1();
+        break;
+    case 1:
+        //show info
+        int choice_1;
+        program.CurrentUser->show_info();
+        cout <<"0. Exit\n";
+        cout <<"1. Return\n";
+        choice_1 = program.choice();
+        switch (choice_1)
+        {
+        case 0:
+            return;
+            break;
+        case 1:
+            member_route();
+            break;
+        default:
+            cout << "Choice not valid";
+            return;
+        }
+        break;
+    case 2:
+        //show request -> accept request
+        program.CurrentUser->show_requests();
+        if(program.CurrentUser->get_req_list().size() == 0){
+            member_route();
+            break;
+        } else {
+            cout <<"Do you want to accept request?: \n";
+            cout <<"0. No\n";
+            cout <<"1. Yes\n";
+            int choice_1 = program.choice();
+            switch (choice_1)
+            {
+            case 0:
+                member_route();
+                break;
+            case 1:
+                accept_request(program.CurrentUser, &program);
+                member_route();
+                break;
+            default:
+                break;
+            }
+        }
+        break;
+    case 3:
+        //list house
+        program.CurrentUser->list_house();
+        member_route();
+        break;
+    case 4:
+        //find house
+        find_suitable_house(program.CurrentUser, &program);
+        member_route();
+        break;
+    case 5:
+        //rate occupying house/occupier
+        rate_house(program.CurrentUser->get_occupying());
+        rate_occupier(program.CurrentUser->get_occupying());
+        member_route();
+        break;
+    default:
+        break;
+    }
 }
 void start(){ //on start
     program.inputData();

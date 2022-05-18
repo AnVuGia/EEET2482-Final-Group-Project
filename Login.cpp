@@ -66,20 +66,16 @@ void login(Global *program){
     }
 };
 void setup(Global *program){
-    cout << "in setup";
     int size = program->users.size();
     for(int i = 0; i < size; i++){
-        cout << " searching " << i <<" ";
         cout << program->users[i].get_occupier_name();
         cout << program->users[i].get_occupying_name();
         for(int j = 0; j < size; j++){ 
             if(program->users[i].get_occupier_name() == program->users[j].get_userName()){
                 program->users[i].set_occupier(&program->users[j]);
-                cout << "in set occupier";
             }
             if(program->users[i].get_occupying_name() == program->users[j].get_userName()){
                 program->users[i].set_occupying(&program->users[j]);
-                cout << "in set occupying";
             }
         }
     }
