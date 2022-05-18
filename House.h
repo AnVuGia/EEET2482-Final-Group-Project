@@ -22,7 +22,7 @@ class House{
         House() {};
         House(string location, string description);
         void show_info();
-        void set_available();
+        int set_available();
         void show_ratings();
         void show_short_info();
 

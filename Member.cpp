@@ -128,7 +128,10 @@ vector <Request>Member:: get_req_list(){
     return this->requests;
 }
 void Member::list_house(){
-    this->own_house.set_available();
+    int state = this->own_house.set_available();
+    if(state == 1){
+        this->requests.clear();
+    }
 }
 //setter
 void Member::set_own_rating_score(double score){

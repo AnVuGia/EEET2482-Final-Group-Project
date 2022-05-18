@@ -14,47 +14,69 @@ House::House(string location, string description){
     this->location = location;
     this->description = description;
 }
-void House::set_available(){
-    string inp;
-    cout << "\nDo you want to list your house (y/n): ";
-    cin >> inp;
-    if(inp == "n"){
-        return;
-    } else {
-        stringstream date_start;
-        stringstream date_end;
-        vector<int> start;
-        vector<int> end;
-        string token;
-        this->available = true;
-        //set start date
-        cout << "\nEnter start date: (dd/mm/yyyy): ";
-        cin >> inp;
-        date_start << inp;
-        while(std::getline(date_start, token, '/')) {
-            stringstream temp(token);
-            int num;
-            temp >> num;
-            start.push_back(num);
+int House::set_available(){
+    if(this->available == true){
+        int user_choice;
+        cout << "Your house is already list, do you want to unlist? \n";
+        cout << "0. No\n";
+        cout << "1. Yes\n";
+        cin >> user_choice;
+        if(user_choice == 1){
+            this->available = false;
+            this->start_date.set_date(0,0,0);
+            this->end_date.set_date(0,0,0);
+            this->consuming_point = 0;
+            return 1;
+        } else {
+            return 0;
         }
-        this->start_date.set_date(start[0], start[1], start[2]);
-        //set end date
-        cout << "\nEnter end date: (dd/mm/yyyy): ";
+    } else{
+        string inp;
+        cout << "\nDo you want to list your house (y/n): ";
         cin >> inp;
-        date_end << inp;
-        while(std::getline(date_end, token, '/')) {
-            stringstream temp(token);
-            int num;
-            temp >> num;
-            end.push_back(num);
+        if(inp == "n"){
+            return;
+        } else {
+            stringstream date_start;
+            stringstream date_end;
+            vector<int> start;
+            vector<int> end;
+            string token;
+            this->available = true;
+            //set start date
+            cout << "\nEnter start date: (dd/mm/yyyy): ";
+            cin >> inp;
+            date_start << inp;
+            while(std::getline(date_start, token, '/')) {
+                stringstream temp(token);
+                int num;
+                temp >> num;
+                start.push_back(num);
+            }
+            this->start_date.set_date(start[0], start[1], start[2]);
+            //set end date
+            cout << "\nEnter end date: (dd/mm/yyyy): ";
+            cin >> inp;
+            date_end << inp;
+            while(std::getline(date_end, token, '/')) {
+                stringstream temp(token);
+                int num;
+                temp >> num;
+                end.push_back(num);
+         }
+            this->end_date.set_date(end[0], end[1], end[2]); 
+            cout << "\nMin occupier_rating: ";   
+            double rating;
+            cin >> rating;
+            this->min_occupier_rating = rating;
+            cout <<"\nPoints per day: ";
+            int points;
+            cin >> points;
+            this->consuming_point = points;
+            cout <<"\nYour house is listed!";
         }
-        this->end_date.set_date(end[0], end[1], end[2]); 
-        cout << "\nMin occupier_rating: ";   
-        double rating;
-        cin >> rating;
-        this->min_occupier_rating = rating;
-    }           
-        //set min req occupier rating      
+        return 0;     
+    }          
 }    
 
 void House::show_info(){
