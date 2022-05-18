@@ -9,6 +9,4 @@ double creditPoints, string userName, string fullName, string phoneNumber, strin
 int status, string req_from, double occ_rate, string start date, string endate, END
 
 
-todo: user.get_req_list().size() > 0 && req.get_status() != 0
-fix house listing
-
+todo: 
