@@ -183,3 +183,7 @@ void House::set_house_rating_score(double score){
 void House::add_rating(Rating rate){
     this->ratings.push_back(rate);
 }
+
+void House::set_house_available(bool available){
+    this->available = available;
+}

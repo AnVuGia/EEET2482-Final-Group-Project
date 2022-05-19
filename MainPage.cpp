@@ -24,29 +24,33 @@ void print_header(){
 }
 void layer_1(){
     int choice;
+    cin.clear();
+    fflush(stdin);
     cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
     {
-    case 1:
-        guest_route(); 
-        break;
-    case 2:
-        int state ;
-        state = login(&program);
-        if(state == 1){
-            member_route();
-        } else {
-            cout << " Please try again\n";
+        case 1:
+            guest_route(); 
+            break;
+        case 2:
+            int state ;
+            state = login(&program);
+            if(state == 1){
+                member_route();
+            } else {
+                cout << " Please try again\n";
+                layer_1();
+            }
+            break;
+        case 3:
+            admin_route();
+            break;
+        default:
+            cout << " Please try again!!!\n";
             layer_1();
-        }
-        break;
-    case 3:
-        admin_route();
-        break;
-    default:
-        break;
+            break;
     }
 }
 void admin_route(){
@@ -153,28 +157,8 @@ void member_route(){
         break;
     case 2:
         //show request -> accept request
-        program.CurrentUser->show_requests();
-        if(program.CurrentUser->get_req_list().size() == 0){
-            member_route();
-            break;
-        } else {
-            cout <<"Do you want to accept request?: \n";
-            cout <<"0. No\n";
-            cout <<"1. Yes\n";
-            int choice_1 = program.choice();
-            switch (choice_1)
-            {
-            case 0:
-                member_route();
-                break;
-            case 1:
-                accept_request(program.CurrentUser, &program);
-                member_route();
-                break;
-            default:
-                break;
-            }
-        }
+        accept_request(program.CurrentUser, &program);
+        member_route();
         break;
     case 3:
         //list house

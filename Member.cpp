@@ -58,6 +58,9 @@ double Member::rating_score(vector<Rating> ratings){
 void Member::show_house_ratings(){
     this->own_house.show_ratings();
 }
+void Member::reset_requests(){
+    this->requests.clear();
+}
 //getter method
 string Member::get_pwd(){
     return this->pwd;
@@ -149,6 +152,8 @@ void Member::set_request(Request req){
     this->requests.push_back(req);
 }
 
+
+
 void Member::set_occupier(Member *mem){
     this->occupier = mem;
 };
@@ -164,8 +169,6 @@ string Member::get_occupier_name(){
 string Member::get_occupying_name(){
         return this->occupying_name;
 }
-    
-
 void Member::add_rating(Rating rate){
     this->ratings.push_back(rate);
 }
@@ -179,4 +182,6 @@ void Member::add_credit(double ammount){
     this->creditPoints += ammount;
 };
 
-
+void Member::set_house_available(bool available){
+    this->own_house.set_house_available(available);
+}

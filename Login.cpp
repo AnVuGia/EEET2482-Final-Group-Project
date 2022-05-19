@@ -48,7 +48,9 @@ int login(Global *program){
             }
         } 
     } while(is_valid);
-};
+
+    return 0;
+}
 void setup(Global *program){
     int size = program->users.size();
     for(int i = 0; i < size; i++){
@@ -226,20 +228,31 @@ void rate_occupier(Member *chosenUser){
 };
 
 void accept_request(Member* currentMember, Global *program) {
-    if(currentMember->get_req_list().size() == 0){
+    if (currentMember->get_req_list().size() == 0 || currentMember->get_req_list().empty()){
         cout << "No request!";
         return;
     }
+
+    if (!currentMember->get_house_avail()){
+        cout << "Already have occupier!";
+        return;
+    }
+    
     currentMember->show_requests();
+
     int accept, i = 1;
     cout << "Accepted request: ";
     cin >> accept;
+
     Request temp = currentMember->get_req_list()[accept-1];
     temp.set_status(2);
-    currentMember->get_req_list().clear();
-    currentMember->get_req_list().push_back(temp);
+    currentMember->reset_requests();
+    currentMember->set_request(temp);
+    currentMember->set_house_available(false);
+
     double days = temp.get_end().rata_die_days() - temp.get_start().rata_die_days() + 1;
     double fee = currentMember->get_house_cons_point() * days;
+
     for(size_t i = 0; i < program->users.size(); i++){
         if(temp.get_req_from() == program->users[i].get_userName()){
             currentMember->set_occupier(&program->users[i]);
@@ -250,5 +263,5 @@ void accept_request(Member* currentMember, Global *program) {
             cout << program->users[i].get_occupying_name() << " New credit: " << currentMember->get_creds() << std::endl; //for testing
         }
     }
-};
+}
 
