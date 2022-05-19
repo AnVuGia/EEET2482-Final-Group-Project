@@ -35,7 +35,7 @@ int House::set_available(){
         cout << "\nDo you want to list your house (y/n): ";
         cin >> inp;
         if(inp == "n"){
-            return;
+            return 1;
         } else {
             stringstream date_start;
             stringstream date_end;
