@@ -53,7 +53,7 @@ class Member {
         double get_house_cons_point();
         void get_full_house_info();
         void get_borrowed_house_from();
-        vector <Request> get_req_list();
+        vector<Request> & get_req_list();
         int get_start_value();
         int get_end_value();
         vector<Rating> get_ratings();

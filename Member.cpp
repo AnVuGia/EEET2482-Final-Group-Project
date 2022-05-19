@@ -7,7 +7,7 @@ using std::cout;
 using std::cin;
 using std::vector;
 void Member::show_info(){
-    cout<< "[ User name: "<< this->userName <<"\n"
+    cout<< "User name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
         <<"Credit: "<< this->creditPoints << "\n"
         << "Rating: " << this->own_rating_score
@@ -28,6 +28,10 @@ void Member::set_info(double creditPoints, string userName, string fullName, str
         this->occupying_name = occupying_name;
     }
 void Member::show_requests(){
+    if(this->requests.size() == 0){
+        cout << "No requests at the moment!";
+        return;
+    }
     cout << "\nCurrent requests: " << std::endl;
     int i = 1;
     for(Request r: this->requests){
@@ -124,7 +128,7 @@ Member* Member::get_occupying(){
     return this->occupying;
 };
 
-vector <Request>Member:: get_req_list(){
+vector<Request> & Member:: get_req_list(){
     return this->requests;
 }
 void Member::list_house(){

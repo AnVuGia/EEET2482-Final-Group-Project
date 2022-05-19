@@ -81,14 +81,14 @@ int House::set_available(){
 
 void House::show_info(){
     cout << "\n[ Location: "<< this->location 
-        << "\nDescription: "<< this->description
-        << "\n Rating: " << this->house_rating_score <<"\n";
-        this->show_ratings();
+        << " || Description: "<< this->description
+        << " || Rating score: " << this->house_rating_score;
     if(available){
-        cout << " || Period: " << this->start_date.get_date() <<" - "<<this->end_date.get_date()<<" ]";
+        cout << " || Available from: " << this->start_date.format() <<" - "<<this->end_date.format()<<" ]" << endl;
     } else{
-        cout <<" ]";
+        cout <<" ]" << endl;
     }
+    this->show_ratings();
 }
 void House::show_short_info(){
     cout << "\n[ Location: " << this->location << std::endl;
@@ -116,15 +116,15 @@ void House::set_info(double houserate,double min_occ_rate,double consuming_point
 }
 void House::show_ratings(){
     int i =1;
-    cout << "House ratings: " << std::endl;
+    cout << "Previous ratings: " << std::endl;
     if(this->ratings.size() == 0){
-        cout << "No rating for this place yet";
+        cout << "No ratings for this place yet" << endl;
     } else{
         for (Rating r: this->ratings) {
-        cout << i << ". Score: " << r.getScore() << " || Comment: " << r.getComment() << std::endl;
+        cout << i << ". [ Score: " << r.getScore() << " || Comment: " << r.getComment() << " ]" << endl;
         i++; 
         }
-    } 
+    }
 };
 //getter
 string House::get_location(){
