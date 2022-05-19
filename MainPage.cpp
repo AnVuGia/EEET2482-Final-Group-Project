@@ -18,9 +18,10 @@ void print_header(){
     cout << "\n\n";
     cout << "Instructor: Mr. Linh Tran" <<"\n"
         << "Group: 25" <<"\n"
-        << "s, student 1" <<"\n"
-        << "s, student 2" <<"\n"
-        << "s, student 3" <<"\n";
+        << "s3926888, An Vu" <<"\n"
+        << "s3911246, Hung Nguyen" <<"\n"
+        << "s3818775, Truong Thanh Long " <<"\n"
+        << "s3820373, Thinh Vu " <<"\n";
 }
 void layer_1(){
     int choice;
@@ -80,7 +81,7 @@ void guest_route(){
     cout << "You are a guest!\n";
     cout<<"0. Exit\n";
     cout << "1. Show info (shortened version): ";
-    cout <<"2. Register";
+    cout <<"\n2. Register";
     choice = program.choice();
     switch (choice)
     {
