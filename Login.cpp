@@ -13,7 +13,7 @@ using std::vector;
 using std::stringstream;
 
 
-void login(Global *program){
+int login(Global *program){
     int is_valid = 1;
     do{
         string username;string pwd;
@@ -29,9 +29,12 @@ void login(Global *program){
             cout << "Enter your password: ";
             cin >> pwd;
             if(pwd == program->CurrentUser->get_pwd()){
-                cout << "Log in success full!\n";    
+                cout << "Log in success full!\n";
+                return 1;    
             } else{
+                program->CurrentUser = NULL;
                 cout << "Wrong password!";
+                return 0;
             }
         } 
         else{
@@ -41,7 +44,7 @@ void login(Global *program){
             cout <<"1. Yes\n";
             int choice = program->choice();
             if(choice == 0){
-                return;
+                return 0;
             }
         } 
     } while(is_valid);
