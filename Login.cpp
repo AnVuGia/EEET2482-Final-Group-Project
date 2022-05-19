@@ -136,9 +136,9 @@ void find_suitable_house(Member *currentUser,Global *program){
                 mem.push_back(&program->users[i]);
                 cout << "\n-------------------------------------------------------------------------------------------------------"<< "\nHouse No." <<count;
                 program->users[i].get_full_house_info();
-                cout << "-------------------------------------------------------------------------------------------------------";
             }
         }
+        cout << "-------------------------------------------------------------------------------------------------------";
         if(mem.size() == 0){
             cout << "No house availabel in "<< city<<" ,do you want to choose again? " <<"\n";
             cout << "0. Exit\n";

@@ -116,7 +116,7 @@ void House::set_info(double houserate,double min_occ_rate,double consuming_point
 }
 void House::show_ratings(){
     int i =1;
-    cout << "Previous ratings: " << std::endl;
+    cout << "Previous house ratings: " << std::endl;
     if(this->ratings.size() == 0){
         cout << "No ratings for this place yet" << endl;
     } else{

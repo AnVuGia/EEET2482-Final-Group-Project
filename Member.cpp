@@ -7,7 +7,7 @@ using std::cout;
 using std::cin;
 using std::vector;
 void Member::show_info(){
-    cout<< "User name: "<< this->userName <<"\n"
+    cout<<"-------------------------------------------------------------------------------------------------------"<< "\nUser name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
         <<"Credit: "<< this->creditPoints << "\n"
         << "Rating: " << this->own_rating_score

@@ -57,12 +57,13 @@ void admin_route(){
         cout << "Enter password: ";
         cin >> pwd;
         if(pwd == program.admin_pwd){
-            cout << "In admin: ";
+            cout << "In admin: " << endl;
             for(auto user: program.users){
                 user.show_info();
             }
+            cout<<"-------------------------------------------------------------------------------------------------------";
             cout <<"\n0. Exit";
-            cout <<"1. Return\n";
+            cout <<"\n1. Return" << endl;
             int choice = program.choice();
             if(choice == 1){
                 layer_1();
