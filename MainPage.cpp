@@ -26,7 +26,7 @@ void layer_1(){
     int choice;
     cin.clear();
     fflush(stdin);
-    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
+    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit & Save\n";
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
@@ -121,7 +121,7 @@ void member_route(){
     int choice;
     cout <<"\n\nHi " <<program.CurrentUser->get_userName()<<"\n";
     cout <<"What do you want to do?: \n";
-    cout <<"0. Exit\n";
+    cout <<"0. Log Out\n" << program.CurrentUser->get_userName()<<"\n";
     cout <<"1. Show info\n";
     cout <<"2. Show request\n";
     cout <<"3. List your house\n";
