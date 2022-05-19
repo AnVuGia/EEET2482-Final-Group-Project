@@ -97,6 +97,7 @@ void guest_route(){
             layer_1();
         } else if(choice_1 == 1){
             program.user_register();
+            cout << program.CurrentUser;
             member_route();
         } else{
             return;
