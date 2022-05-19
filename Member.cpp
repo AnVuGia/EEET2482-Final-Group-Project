@@ -6,6 +6,8 @@ using std::string;
 using std::cout;
 using std::cin;
 using std::vector;
+
+// show information of user
 void Member::show_info(){
     cout<<"-------------------------------------------------------------------------------------------------------"<< "\nUser name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
@@ -14,6 +16,8 @@ void Member::show_info(){
         <<"\nHouse: ";
         this->own_house.show_info();
 }
+
+// setup user information
 void Member::set_info(double creditPoints, string userName, string fullName, string phoneNumber, string pwd,double own_rating,
  double houserate, double min_ocrate ,string loca,string des,bool avail,double cons_point,
  string startdate, string enddate, string occupier_name, string occupying_name){
@@ -27,6 +31,8 @@ void Member::set_info(double creditPoints, string userName, string fullName, str
         this->occupier_name = occupier_name;
         this->occupying_name = occupying_name;
     }
+
+// show request from member to user
 void Member::show_requests(){
     if(this->requests.size() == 0){
         cout << "No requests at the moment!";
@@ -40,6 +46,8 @@ void Member::show_requests(){
         i++;
     }
 }
+
+// show rating to member from user
 void Member::show_user_ratings(){
     int i =1;
     cout << "User's ratings: " << std::endl;
@@ -48,6 +56,7 @@ void Member::show_user_ratings(){
         i++; 
     }
 }
+// show average rating
 double Member::rating_score(vector<Rating> ratings){
     double num, sum, rating;
         if(ratings.size()>0){   

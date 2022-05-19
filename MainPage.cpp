@@ -12,6 +12,7 @@ Global program;
 void guest_route();
 void member_route();
 void admin_route();
+// header when app start
 void print_header(){
     cout << "\n\nEEET2482/COSC2082 ASSIGNMENT\n";
     cout << "VACATION HOUSE EXCHANGE APPLICATION";
@@ -23,6 +24,7 @@ void print_header(){
         << "s3818775, Truong Thanh Long " <<"\n"
         << "s3820373, Thinh Vu " <<"\n";
 }
+// main menu for choose guest, member or admin
 void layer_1(){
     int choice;
     cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
@@ -50,6 +52,8 @@ void layer_1(){
         break;
     }
 }
+
+// admin menu
 void admin_route(){
     string user_inp, pwd;
     cout <<"Enter admin username: ";
@@ -76,6 +80,8 @@ void admin_route(){
         cout << "Wrong admin username!";
     }
 }
+
+//guest (non member) menu
 void guest_route(){
     int choice;
     cout << "You are a guest!\n";
@@ -116,6 +122,8 @@ void guest_route(){
     }
     
 }
+
+// menu for member 
 void member_route(){
     int choice;
     cout <<"\n\nHi " <<program.CurrentUser->get_userName()<<"\n";
@@ -231,6 +239,8 @@ void member_route(){
         break;
     }
 }
+
+// start app
 void start(){ //on start
     program.inputData();
     setup(&program);
