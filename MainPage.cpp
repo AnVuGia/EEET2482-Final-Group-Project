@@ -33,9 +33,13 @@ void layer_1(){
         guest_route(); 
         break;
     case 2:
-        login(&program);
-        if(program.CurrentUser != NULL){
+        int state ;
+        state = login(&program);
+        if(state == 1){
             member_route();
+        } else {
+            cout << " Please try again\n";
+            layer_1();
         }
         break;
     case 3:
