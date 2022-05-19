@@ -18,39 +18,36 @@ void print_header(){
     cout << "\n\n";
     cout << "Instructor: Mr. Linh Tran" <<"\n"
         << "Group: 25" <<"\n"
-        << "s, student 1" <<"\n"
-        << "s, student 2" <<"\n"
-        << "s, student 3" <<"\n";
+        << "s3926888, An Vu" <<"\n"
+        << "s3911246, Hung Nguyen" <<"\n"
+        << "s3818775, Truong Thanh Long " <<"\n"
+        << "s3820373, Thinh Vu " <<"\n";
 }
 void layer_1(){
     int choice;
-    cin.clear();
-    fflush(stdin);
-    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit & Save\n";
+    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
     {
-        case 1:
-            guest_route(); 
-            break;
-        case 2:
-            int state ;
-            state = login(&program);
-            if(state == 1){
-                member_route();
-            } else {
-                cout << " Please try again\n";
-                layer_1();
-            }
-            break;
-        case 3:
-            admin_route();
-            break;
-        default:
-            cout << " Please try again!!!\n";
+    case 1:
+        guest_route(); 
+        break;
+    case 2:
+        int state ;
+        state = login(&program);
+        if(state == 1){
+            member_route();
+        } else {
+            cout << " Please try again\n";
             layer_1();
-            break;
+        }
+        break;
+    case 3:
+        admin_route();
+        break;
+    default:
+        break;
     }
 }
 void admin_route(){
@@ -61,12 +58,13 @@ void admin_route(){
         cout << "Enter password: ";
         cin >> pwd;
         if(pwd == program.admin_pwd){
-            cout << "In admin: ";
+            cout << "In admin: " << endl;
             for(auto user: program.users){
                 user.show_info();
             }
+            cout<<"-------------------------------------------------------------------------------------------------------";
             cout <<"\n0. Exit";
-            cout <<"1. Return\n";
+            cout <<"\n1. Return" << endl;
             int choice = program.choice();
             if(choice == 1){
                 layer_1();
@@ -83,7 +81,7 @@ void guest_route(){
     cout << "You are a guest!\n";
     cout<<"0. Exit\n";
     cout << "1. Show info (shortened version): ";
-    cout <<"2. Register";
+    cout <<"\n2. Register";
     choice = program.choice();
     switch (choice)
     {
@@ -99,6 +97,7 @@ void guest_route(){
             layer_1();
         } else if(choice_1 == 1){
             program.user_register();
+            cout << program.CurrentUser;
             member_route();
         } else{
             return;
@@ -121,7 +120,7 @@ void member_route(){
     int choice;
     cout <<"\n\nHi " <<program.CurrentUser->get_userName()<<"\n";
     cout <<"What do you want to do?: \n";
-    cout <<"0. Log Out\n" << program.CurrentUser->get_userName()<<"\n";
+    cout <<"0. Exit\n";
     cout <<"1. Show info\n";
     cout <<"2. Show request\n";
     cout <<"3. List your house\n";
@@ -157,8 +156,28 @@ void member_route(){
         break;
     case 2:
         //show request -> accept request
-        accept_request(program.CurrentUser, &program);
-        member_route();
+        program.CurrentUser->show_requests();
+        if(program.CurrentUser->get_req_list().size() == 0){
+            member_route();
+            break;
+        } else {
+            cout <<"Do you want to accept request?: \n";
+            cout <<"0. No\n";
+            cout <<"1. Yes\n";
+            int choice_1 = program.choice();
+            switch (choice_1)
+            {
+            case 0:
+                member_route();
+                break;
+            case 1:
+                accept_request(program.CurrentUser, &program);
+                member_route();
+                break;
+            default:
+                break;
+            }
+        }
         break;
     case 3:
         //list house

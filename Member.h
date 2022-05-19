@@ -21,8 +21,8 @@ class Member {
         vector<Request> requests;
         string occupier_name = "0";
         string occupying_name = "0";
-        Member *occupier = NULL; // thằng này đang thuê nhà 
-        Member *occupying = NULL; // đang thuê nhà của thằng này
+        Member *occupier = NULL; // thằng này đang thuê nhà của super
+        Member *occupying =NULL; // super đang thuê nhà của thằng này
     public:
         Member(){};
         //methods
@@ -34,7 +34,6 @@ class Member {
         void show_house_ratings();
         void show_user_ratings();
         double rating_score(vector<Rating> ratings);
-        void reset_requests();
 
         //getter methods
         double get_creds();
@@ -54,7 +53,7 @@ class Member {
         double get_house_cons_point();
         void get_full_house_info();
         void get_borrowed_house_from();
-        vector <Request> get_req_list();
+        vector<Request> & get_req_list();
         int get_start_value();
         int get_end_value();
         vector<Rating> get_ratings();
@@ -75,6 +74,5 @@ class Member {
         void add_house_rating(Rating rate);
         void minus_credit(double ammount);
         void add_credit(double ammount);
-        void set_house_available(bool available);
 };
 #endif

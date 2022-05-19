@@ -46,7 +46,6 @@ class House{
         void set_descrition(string des);
         void set_house_rating_score(double score);
         void add_rating(Rating rate);
-        void set_house_available(bool available);
 };
 
 #endif

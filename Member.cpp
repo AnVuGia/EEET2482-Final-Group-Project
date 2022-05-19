@@ -7,7 +7,7 @@ using std::cout;
 using std::cin;
 using std::vector;
 void Member::show_info(){
-    cout<< "[ User name: "<< this->userName <<"\n"
+    cout<<"-------------------------------------------------------------------------------------------------------"<< "\nUser name: "<< this->userName <<"\n"
         << "Full name: "<< this->fullName <<"\n"
         <<"Credit: "<< this->creditPoints << "\n"
         << "Rating: " << this->own_rating_score
@@ -28,6 +28,10 @@ void Member::set_info(double creditPoints, string userName, string fullName, str
         this->occupying_name = occupying_name;
     }
 void Member::show_requests(){
+    if(this->requests.size() == 0){
+        cout << "No requests at the moment!";
+        return;
+    }
     cout << "\nCurrent requests: " << std::endl;
     int i = 1;
     for(Request r: this->requests){
@@ -57,9 +61,6 @@ double Member::rating_score(vector<Rating> ratings){
 }
 void Member::show_house_ratings(){
     this->own_house.show_ratings();
-}
-void Member::reset_requests(){
-    this->requests.clear();
 }
 //getter method
 string Member::get_pwd(){
@@ -127,7 +128,7 @@ Member* Member::get_occupying(){
     return this->occupying;
 };
 
-vector <Request>Member:: get_req_list(){
+vector<Request> & Member:: get_req_list(){
     return this->requests;
 }
 void Member::list_house(){
@@ -152,8 +153,6 @@ void Member::set_request(Request req){
     this->requests.push_back(req);
 }
 
-
-
 void Member::set_occupier(Member *mem){
     this->occupier = mem;
 };
@@ -169,6 +168,8 @@ string Member::get_occupier_name(){
 string Member::get_occupying_name(){
         return this->occupying_name;
 }
+    
+
 void Member::add_rating(Rating rate){
     this->ratings.push_back(rate);
 }
@@ -182,6 +183,4 @@ void Member::add_credit(double ammount){
     this->creditPoints += ammount;
 };
 
-void Member::set_house_available(bool available){
-    this->own_house.set_house_available(available);
-}
+

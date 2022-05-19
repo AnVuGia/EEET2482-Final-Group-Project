@@ -6,6 +6,7 @@
 #include "Global.h"
 #include "Login.h"
 #include "Member.h"
+#include "Request.h"
 using std::cin;
 using std::cout;
 using std::string;
@@ -48,9 +49,7 @@ int login(Global *program){
             }
         } 
     } while(is_valid);
-
-    return 0;
-}
+};
 void setup(Global *program){
     int size = program->users.size();
     for(int i = 0; i < size; i++){
@@ -85,7 +84,7 @@ void send_request(Member *currentUser, Member *chosenUser){
             }
             start_res >> day>>month>>year;
             temp_start.set_date(day,month,year);
-            if (temp_start.rata_die_days() < chosenUser->get_start_value())
+            if (temp_start.rata_die_days()<chosenUser->get_start_value() || temp_start.rata_die_days()> chosenUser->get_end_value())
                 {
                 is_valid =true;
                 cout << "\nInvalid input!\n";
@@ -108,7 +107,7 @@ void send_request(Member *currentUser, Member *chosenUser){
             }
             end_res >> day>>month>>year;
             temp_end.set_date(day,month,year);
-            if (temp_end.rata_die_days() > chosenUser->get_end_value())
+            if (temp_end.rata_die_days() > chosenUser->get_end_value() || temp_end.rata_die_days() < temp_start.rata_die_days())
                 {
                 is_valid =true;
                 cout << "\nInvalid input!\n";
@@ -118,6 +117,7 @@ void send_request(Member *currentUser, Member *chosenUser){
         } while (is_valid);
     temp_req.set_req(1,currentUser->get_userName(),currentUser->get_own_rating_score(),temp_start.get_date(),temp_end.get_date());
     chosenUser->set_request(temp_req);
+    cout << "\nRequest sent! Please wait for approval";
 }
 void find_suitable_house(Member *currentUser,Global *program){
     //vector_ptr để lưu địa chỉ của obj user
@@ -134,10 +134,11 @@ void find_suitable_house(Member *currentUser,Global *program){
              && program->users[i].get_house_avail() == 1 && 
              &program->users[i] != program->CurrentUser){
                 mem.push_back(&program->users[i]);
-                cout << "House no." <<count <<":\n";
+                cout << "\n-------------------------------------------------------------------------------------------------------"<< "\nHouse No." <<count;
                 program->users[i].get_full_house_info();
             }
         }
+        cout << "-------------------------------------------------------------------------------------------------------";
         if(mem.size() == 0){
             cout << "No house availabel in "<< city<<" ,do you want to choose again? " <<"\n";
             cout << "0. Exit\n";
@@ -159,7 +160,7 @@ void find_suitable_house(Member *currentUser,Global *program){
         do
         {   
             //Nhập vào lựa chọn của user
-            cout <<"\nEnter your choice: (house no:)";
+            cout <<"\nEnter your choice (House No.): ";
             cin >> choice;
             int int_choice = std::stoi(choice);
             if(int_choice > mem.size() || int_choice <= 0){
@@ -179,7 +180,7 @@ void find_suitable_house(Member *currentUser,Global *program){
             }else{
                 //print ra lựa chọn của user
                 cout <<"\nYour house choice is: "<<"\n"; 
-                cout << mem[int_choice-1]->get_userName() <<" 's house: \n";
+                cout << mem[int_choice-1]->get_userName() <<"'s house:";
                 mem[int_choice-1]->get_full_house_info() ; 
                 send_request(program->CurrentUser, mem[int_choice-1]);
                 token = false;
@@ -228,31 +229,27 @@ void rate_occupier(Member *chosenUser){
 };
 
 void accept_request(Member* currentMember, Global *program) {
-    if (currentMember->get_req_list().size() == 0 || currentMember->get_req_list().empty()){
-        cout << "No request!";
-        return;
-    }
-
-    if (!currentMember->get_house_avail()){
-        cout << "Already have occupier!";
-        return;
-    }
-    
     currentMember->show_requests();
-
     int accept, i = 1;
     cout << "Accepted request: ";
     cin >> accept;
-
     Request temp = currentMember->get_req_list()[accept-1];
-    temp.set_status(2);
-    currentMember->reset_requests();
-    currentMember->set_request(temp);
-    currentMember->set_house_available(false);
-
+    currentMember->get_req_list()[accept-1].set_status(2);
+    // Check for overlapped requests and reject
+    for(int i =0; i< currentMember->get_req_list().size(); i++){
+        if (currentMember->get_req_list()[i].get_status() == 1){
+            if (temp.get_start().rata_die_days() <= currentMember->get_req_list()[i].get_end().rata_die_days() 
+            && temp.get_end().rata_die_days() >= currentMember->get_req_list()[i].get_start().rata_die_days()){
+                currentMember->get_req_list()[i].set_status(0);
+            }
+        }
+    }
+    // Request temp = currentMember->get_req_list()[accept-1];
+    // temp.set_status(2);
+    // currentMember->get_req_list().clear();
+    // currentMember->get_req_list().push_back(temp);
     double days = temp.get_end().rata_die_days() - temp.get_start().rata_die_days() + 1;
     double fee = currentMember->get_house_cons_point() * days;
-
     for(size_t i = 0; i < program->users.size(); i++){
         if(temp.get_req_from() == program->users[i].get_userName()){
             currentMember->set_occupier(&program->users[i]);
@@ -263,5 +260,5 @@ void accept_request(Member* currentMember, Global *program) {
             cout << program->users[i].get_occupying_name() << " New credit: " << currentMember->get_creds() << std::endl; //for testing
         }
     }
-}
+};
 
