@@ -10,11 +10,14 @@ using std::string;
 using std::vector;
 using std::stringstream;
 using std::end;
+//house setup
 House::House(string location, string description){
     this->location = location;
     this->description = description;
 }
+// add house
 int House::set_available(){
+    // find house if they available in user add house
     if(this->available == true){
         int user_choice;
         cout << "Your house is already list, do you want to unlist? \n";
@@ -31,6 +34,7 @@ int House::set_available(){
             return 0;
         }
     } else{
+        // add house when user not have any house available
         string inp;
         cout << "\nDo you want to list your house (y/n): ";
         cin >> inp;
@@ -79,6 +83,7 @@ int House::set_available(){
     }          
 }    
 
+// show information of the user's house
 void House::show_info(){
     cout << "\n[ Location: "<< this->location 
         << " || Description: "<< this->description
@@ -90,13 +95,15 @@ void House::show_info(){
     }
     this->show_ratings();
 }
+
+// show infor for member
 void House::show_short_info(){
     cout << "\n[ Location: " << this->location << std::endl;
     cout << "Description: " << this->description << std::endl;
     cout << "Consumming point: " << this->consuming_point << std::endl;
     cout << "Minimum required occupier rating: " << this->min_occupier_rating << "]" << std::endl;
 }
-
+// information setup
 void House::set_info(double houserate,double min_occ_rate,double consuming_point, 
     string loca, string des, bool avail,string startdate,string enddate){
        this->house_rating_score = houserate;
@@ -114,6 +121,7 @@ void House::set_info(double houserate,double min_occ_rate,double consuming_point
         this->end_date.set_date(day, month, year);
         
 }
+// show rating(comment and score) for user 
 void House::show_ratings(){
     int i =1;
     cout << "Previous house ratings: " << std::endl;

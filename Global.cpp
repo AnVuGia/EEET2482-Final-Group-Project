@@ -13,6 +13,8 @@ using std::vector;
 using std::stringstream;
 
 Global::Global(){};
+
+
 void Global::inputUserData(Member &user, string line){
     stringstream ss(line);
     vector<string> outp;
@@ -49,6 +51,8 @@ void Global::inputUserData(Member &user, string line){
         i+=5;
     }
 }
+
+// input data for txt file
 void Global::inputData(){
     std::fstream myfile;
     myfile.open("output.txt", std::ios::in);
@@ -72,7 +76,7 @@ int Global::choice(){
     cin >> choice;
     return choice;
 }
-
+// out put and save to txt file
 void Global::end(){
     std::fstream myfile;
     myfile.open("output.txt", std::ios::out);
@@ -141,6 +145,8 @@ void Global::end(){
     cout << "\n File saved!";
     myfile.close();
 }
+
+// function register for user
 void Global::user_register(){
     stringstream ss;
     string temp;
