@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 using std::stringstream;
 
-
+// user login function 
 int login(Global *program){
     int is_valid = 1;
     do{
@@ -50,6 +50,8 @@ int login(Global *program){
         } 
     } while(is_valid);
 };
+
+//
 void setup(Global *program){
     int size = program->users.size();
     for(int i = 0; i < size; i++){
@@ -65,6 +67,8 @@ void setup(Global *program){
         }
     }
 }
+
+// member sent request for user
 void send_request(Member *currentUser, Member *chosenUser){
     Request temp_req;   
         string token;
@@ -119,6 +123,8 @@ void send_request(Member *currentUser, Member *chosenUser){
     chosenUser->set_request(temp_req);
     cout << "\nRequest sent! Please wait for approval";
 }
+
+// user find location for the trip 
 void find_suitable_house(Member *currentUser,Global *program){
     //vector_ptr để lưu địa chỉ của obj user
     vector <Member*> mem;
@@ -188,7 +194,7 @@ void find_suitable_house(Member *currentUser,Global *program){
             }
         } while (token);
 }
-
+// show all house available for user after they find suitable location
 void showHouse(Global *program)
 {
     for(size_t i = 0; i < program->users.size(); i++){
@@ -199,6 +205,7 @@ void showHouse(Global *program)
     }
 }
 
+// rate for user's house by another member
 void rate_house(Member *chosenUser){
     double score;
     string comment;
@@ -213,6 +220,8 @@ void rate_house(Member *chosenUser){
         chosenUser->set_house_rating_score(chosenUser->rating_score(chosenUser->get_own_house().get_ratings()));
     }
 }
+
+// rate (comment and score) for occupier who used user house
 void rate_occupier(Member *chosenUser){
     double score;
     string comment;
@@ -229,6 +238,7 @@ void rate_occupier(Member *chosenUser){
     }
 };
 
+// User accept request and reject from another member, overtime for another member requests.
 void accept_request(Member* currentMember, Global *program) {
     currentMember->show_requests();
     int accept, i = 1;
