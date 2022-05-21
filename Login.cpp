@@ -138,7 +138,8 @@ void find_suitable_house(Member *currentUser,Global *program){
         for(int i = 0; i < program->users.size(); i++){
              if(program->users[i].get_house_loca() == city 
              && program->users[i].get_house_avail() == 1 && 
-             &program->users[i] != program->CurrentUser){
+             &program->users[i] != program->CurrentUser  &&
+             program->CurrentUser->get_own_rating_score() >= program->users[i].get_minocrate()){
                 mem.push_back(&program->users[i]);
                 cout << "\n-------------------------------------------------------------------------------------------------------"<< "\nHouse No." <<count;
                 program->users[i].get_full_house_info();
