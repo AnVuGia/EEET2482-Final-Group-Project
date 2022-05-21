@@ -4,7 +4,7 @@
 #include <sstream>
 #include "Member.h"
 #include "Global.h"
-#include "Login.h"
+#include "AppFunction.h"
 #include "Member.h"
 #include "Request.h"
 using std::cin;
