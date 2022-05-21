@@ -186,9 +186,9 @@ void Global::user_register(){
     Member user_temp; 
     inputUserData(user_temp, ss.str());
     this->users.push_back(user_temp);
-    for (auto user: this->users){
-        if(user_temp.get_userName() == user.get_userName()){
-            this->CurrentUser = &user;
+    for (size_t i = 0; i < this->users.size(); i++){
+        if(user_temp.get_userName() == this->users[i].get_userName()){
+            this->CurrentUser = &this->users[i];
         }
     }
 }  
