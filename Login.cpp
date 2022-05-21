@@ -232,7 +232,7 @@ void rate_occupier(Member *chosenUser){
 void accept_request(Member* currentMember, Global *program) {
     currentMember->show_requests();
     int accept, i = 1;
-    cout << "Accepted request: ";
+    cout << "Accept request: ";
     cin >> accept;
     Request temp = currentMember->get_req_list()[accept-1];
     currentMember->get_req_list()[accept-1].set_status(2);
@@ -245,10 +245,6 @@ void accept_request(Member* currentMember, Global *program) {
             }
         }
     }
-    // Request temp = currentMember->get_req_list()[accept-1];
-    // temp.set_status(2);
-    // currentMember->get_req_list().clear();
-    // currentMember->get_req_list().push_back(temp);
     double days = temp.get_end().rata_die_days() - temp.get_start().rata_die_days() + 1;
     double fee = currentMember->get_house_cons_point() * days;
     for(size_t i = 0; i < program->users.size(); i++){
@@ -257,8 +253,7 @@ void accept_request(Member* currentMember, Global *program) {
             currentMember->add_credit(fee);
             program->users[i].set_occupying(currentMember);
             program->users[i].minus_credit(fee);
-            cout << currentMember->get_occupier_name() << " New credit: " << program->users[i].get_creds() << " Days: " << days << " Fees: $" << fee << std::endl; //for testing
-            cout << program->users[i].get_occupying_name() << " New credit: " << currentMember->get_creds() << std::endl; //for testing
+            cout << "\nAccepted request: "<< currentMember->get_occupier_name() << ", Days: " << days << ", Fees: $" << fee << std::endl; //for testing
         }
     }
 };
