@@ -163,7 +163,7 @@ void Global::user_register(){
             }
         }
     } while (token);
-    ss<<600<<",";
+    ss<<500<<",";
     ss<<temp<<",";
     cout <<"\nEnter your fullname: ";
     std::getline(cin >> std::ws, temp);

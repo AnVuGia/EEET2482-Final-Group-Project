@@ -230,8 +230,7 @@ void member_route(){
             cout << "User rating: \n";
             if(program.CurrentUser->get_ratings().size() == 0) {
                 cout << "No rating yet\n";
-                member_route();
-            } else{
+            }else{
                 for(auto rate : program.CurrentUser->get_ratings()){
                     rate.show_rating();
                 }
@@ -239,7 +238,6 @@ void member_route(){
             cout << "House rating: \n";
             if(program.CurrentUser->get_own_house().get_ratings().size() == 0) {
                 cout << "No rating yet\n";
-                member_route();
             } else{
                 for(auto rate : program.CurrentUser->get_own_house().get_ratings()){
                     rate.show_rating();
