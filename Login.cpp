@@ -276,9 +276,9 @@ void accept_request(Member* currentMember, Global *program) {
 
 void show_occupying(Member *currentMember){
     if(currentMember->get_occupying() == NULL){
-        cout << "Not occupy\n";
+        cout << "You are not occupying any house!\n";
     }else{
-        cout <<"Is occupying " << currentMember->get_occupying()->get_userName() <<" 's house\n";
+        cout <<"You are occupying " << currentMember->get_occupying()->get_userName() <<" 's house\n";
         currentMember->get_occupying()->get_full_house_info();
     }
 }
