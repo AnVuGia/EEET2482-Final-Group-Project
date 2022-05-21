@@ -235,16 +235,22 @@ void accept_request(Member* currentMember, Global *program) {
     cout << "Accept request: ";
     cin >> accept;
     Request temp = currentMember->get_req_list()[accept-1];
-    currentMember->get_req_list()[accept-1].set_status(2);
     // Check for overlapped requests and reject
     for(int i =0; i< currentMember->get_req_list().size(); i++){
-        if (currentMember->get_req_list()[i].get_status() == 1){
+        if (currentMember->get_req_list()[i].get_status() != 0){
             if (temp.get_start().rata_die_days() <= currentMember->get_req_list()[i].get_end().rata_die_days() 
             && temp.get_end().rata_die_days() >= currentMember->get_req_list()[i].get_start().rata_die_days()){
-                currentMember->get_req_list()[i].set_status(0);
+                if(currentMember->get_req_list()[i].get_status() ==2){
+                    cout << "Overlap with previously accepted request!";
+                    return;
+                }else{
+                    currentMember->get_req_list()[i].set_status(0);
+                }
+                
             }
         }
     }
+    currentMember->get_req_list()[accept-1].set_status(2);
     double days = temp.get_end().rata_die_days() - temp.get_start().rata_die_days() + 1;
     double fee = currentMember->get_house_cons_point() * days;
     for(size_t i = 0; i < program->users.size(); i++){
@@ -258,3 +264,11 @@ void accept_request(Member* currentMember, Global *program) {
     }
 };
 
+void show_occupying(Member *currentMember){
+    if(currentMember->get_occupying() == NULL){
+        cout << "Not occupy\n";
+    }else{
+        cout <<"Is occupying " << currentMember->get_occupying()->get_userName() <<" 's house\n";
+        currentMember->get_occupying()->get_full_house_info();
+    }
+}

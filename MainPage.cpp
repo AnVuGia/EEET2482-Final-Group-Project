@@ -126,6 +126,7 @@ void member_route(){
     cout <<"3. List your house\n";
     cout <<"4. Find house (Hanoi, Saigon, Da Nang)\n";
     cout <<"5. Rate your occupying house/occupier\n";
+    cout <<"6. Show occupying house\n";
     choice = program.choice();
     switch (choice)
     {
@@ -227,6 +228,10 @@ void member_route(){
             break;
         }
         break;
+    case 6:
+        show_occupying(program.CurrentUser);
+        member_route();
+        break;        
     default:
         break;
     }

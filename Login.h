@@ -10,4 +10,5 @@ void rate_house(Member *chosenUser);
 void rate_occupier(Member *chosenUser);
 void showHouse(Global *program);
 void accept_request(Member *currentMember, Global *program);
+void show_occupying(Member *currentMember);
 #endif
