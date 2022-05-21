@@ -126,6 +126,7 @@ void guest_route(){
     case 0:
         cout << "Exit!";
         layer_1();
+        break;
     default:
         cout << "Not valid!\n";
         guest_route();
