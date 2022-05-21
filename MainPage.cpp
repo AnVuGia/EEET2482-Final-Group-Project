@@ -27,7 +27,7 @@ void print_header(){
 // main menu for choose guest, member or admin
 void layer_1(){
     int choice;
-    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit\n";
+    cout << "\nUse the app as: 1. Guest  2. Member   3.  Admin   4.Exit & Save\n";
     cout << "Enter your choice: ";
     cin >> choice;
     switch (choice)
@@ -48,7 +48,11 @@ void layer_1(){
     case 3:
         admin_route();
         break;
+    case 4:
+        break;
     default:
+        cout << "Please try again\n";
+        layer_1();
         break;
     }
 }
@@ -77,7 +81,8 @@ void admin_route(){
             }
         }
     } else{
-        cout << "Wrong admin username!";
+        cout << "Wrong admin username or password!\n";
+        admin_route();
     }
 }
 
@@ -99,6 +104,7 @@ void guest_route(){
         cout <<"0. Back\n";
         cout <<"1. Register\n";
         choice_1 = program.choice();
+
         if(choice_1 == 0){
             layer_1();
         } else if(choice_1 == 1){
@@ -106,8 +112,12 @@ void guest_route(){
             cout << program.CurrentUser;
             member_route();
         } else{
+            cout << "Please try again\n";
+            guest_route();
             return;
         }
+        cout << "Please try again\n";
+        guest_route();
         break;
     case 2:
         program.user_register();
@@ -115,9 +125,10 @@ void guest_route(){
         break;
     case 0:
         cout << "Exit!";
-        return;
+        layer_1();
     default:
-        cout << "Not valid!";
+        cout << "Not valid!\n";
+        guest_route();
         break;
     }
     
@@ -160,6 +171,7 @@ void member_route(){
             break;
         default:
             cout << "Choice not valid";
+            member_route();
             return;
         }
         break;
@@ -184,6 +196,8 @@ void member_route(){
                 member_route();
                 break;
             default:
+                cout << "Choice not valid";
+                member_route();
                 break;
             }
         }
@@ -233,6 +247,8 @@ void member_route(){
             member_route();
             break;
         default:
+            cout << "Choice not valid";
+            member_route();
             break;
         }
         break;
@@ -241,6 +257,8 @@ void member_route(){
         member_route();
         break;        
     default:
+        cout << "Choice not valid";
+        member_route();
         break;
     }
 }
