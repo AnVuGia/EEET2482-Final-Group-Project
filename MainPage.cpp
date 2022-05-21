@@ -49,7 +49,7 @@ void layer_1(){
         admin_route();
         break;
     case 4:
-        break;
+        return;
     default:
         cout << "Please try again\n";
         layer_1();
@@ -126,6 +126,7 @@ void guest_route(){
     case 0:
         cout << "Exit!";
         layer_1();
+        break;
     default:
         cout << "Not valid!\n";
         guest_route();
@@ -164,7 +165,7 @@ void member_route(){
         switch (choice_1)
         {
         case 0:
-            return;
+            member_route();
             break;
         case 1:
             member_route();
